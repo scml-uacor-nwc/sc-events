@@ -1,6 +1,5 @@
 === SC Events ===
-Contributors: (your wordpress.org username)
-Donate link: https://example.com/
+Contributors: Pedro Matias
 Tags: events, event management, shortcode, custom post type, calendar, agenda
 Requires at least: 5.8
 Tested up to: 6.5

@@ -22,7 +22,7 @@ class Shortcodes {
 
     /**
      * Renders the [sc_event_details] shortcode for the single event view.
-     * This is the key to compatibility with page builders like Avada.
+     * This is to ensure compatibility with page builders like Avada.
      */
     public function render_single_event_details() {
         // This shortcode should only work on a single event page.
@@ -34,8 +34,7 @@ class Shortcodes {
         Enqueue::$load_assets = true;
 
         ob_start();
-
-        // Use the exact same logic and HTML structure from your single-event.php template
+        // Start the loop to fetch the current post data.
         while ( have_posts() ) :
             the_post();
 
@@ -93,14 +92,12 @@ class Shortcodes {
     
     /**
      * Renders the [sc_events] shortcode for the cards grid.
-     * (This function remains exactly the same as before).
      */
     public function render_events_shortcode( $atts ) {
-        // ... The code for this function does not need to change ...
         Enqueue::$load_assets = true;
         $atts = shortcode_atts( [ 'limit' => 3, 'category' => '', ], $atts, 'sc_events' );
-        $query_args = [ /* ... all the query args ... */ ];
-        if ( ! empty( $atts['category'] ) ) { /* ... tax query ... */ }
+        $query_args = [];
+        if ( ! empty( $atts['category'] ) ) {}
         $events_query = new \WP_Query( $query_args );
         ob_start();
         if ( $events_query->have_posts() ) {

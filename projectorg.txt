@@ -1,0 +1,33 @@
+/sc-events/
+|
+|-- assets/
+|   |-- scss/
+|   |-- css/
+|   |-- js/
+|   |-- images/
+|
+|-- includes/
+|   |-- Admin/
+|   |   |-- CustomCss.php
+|   |
+|   |-- Assets/
+|   |   |-- Enqueue.php
+|   |
+|   |-- Core/
+|   |   |-- Plugin.php
+|   |
+|   |-- Frontend/
+|   |   |-- Templates.php
+|   |
+|   |-- MetaFields/
+|   |   |-- EventMeta.php
+|   |
+|   |-- PostTypes/
+|   |   |-- Event.php
+|
+|-- templates/
+|   |-- archive-event.php
+|   |-- single-event.php
+|
+|-- autoload.php             # A very important file for loading our classes
+|-- sc-events.php            # The main plugin entry file

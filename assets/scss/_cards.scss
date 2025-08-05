@@ -1,0 +1,74 @@
+.sc-events-archive {
+    &__header {
+        margin-bottom: 2rem;
+    }
+    &__sub-title {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+    &__title {
+        margin: 0;
+    }
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+}
+
+.sc-events-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+        text-decoration: none;
+    }
+
+    &__date {
+        background-color: #222;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        border-radius: 4px;
+    }
+
+    &__day {
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    &__month {
+        font-size: 1rem;
+        text-transform: uppercase;
+        line-height: 1;
+    }
+
+    &__details {
+        text-align: left;
+    }
+
+    &__title {
+        font-size: 1.1rem;
+        margin: 0 0 0.25rem 0;
+        text-decoration: underline;
+    }
+
+    &__category {
+        font-size: 0.9rem;
+        color: #555;
+        margin: 0;
+    }
+}

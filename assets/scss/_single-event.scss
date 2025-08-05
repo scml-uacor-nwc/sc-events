@@ -1,0 +1,109 @@
+// Main container to center the content and give it a max-width
+.sc-events-single-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+// Styles for the entire single event wrapper
+.sc-events-single {
+
+    &__breadcrumbs {
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 2rem;
+        .current {
+            font-weight: bold;
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-wrap: wrap; // Allows wrapping on small screens
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        gap: 2rem;
+    }
+
+    &__title-wrapper {
+        flex-basis: 60%; // Takes up more space
+    }
+
+    &__title {
+        font-size: 3rem;
+        margin: 0;
+        line-height: 1.1;
+        font-weight: bold;
+        @media (max-width: 768px) {
+            font-size: 2.2rem;
+        }
+    }
+
+    &__dates-wrapper {
+        flex-shrink: 0;
+        text-align: left;
+        padding-left: 1rem;
+        border-left: 2px solid #e0e0e0;
+        @media (max-width: 768px) {
+            flex-basis: 100%; // Takes full width on small screens
+            border-left: none;
+            padding-left: 0;
+            text-align: left;
+        }
+        p {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+    }
+
+    &__image-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    &__content {
+        margin-bottom: 3rem;
+        // Styles for p, h2, h3, etc. inside the content will be inherited from the theme.
+    }
+
+    &__details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; // Two equal columns
+        gap: 2rem 3rem; // 2rem row-gap, 3rem column-gap
+        
+        // On smaller screens, stack the grid items
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__detail-item {
+        h3.sc-events-single__detail-title {
+            background-color: #ffc107; // Gold color from your design
+            color: #111;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        p {
+            background-color: #f7f7f7; // Light grey background for the content part
+            padding: 1rem;
+            margin: 0;
+            min-height: 80px; // Gives the boxes a more uniform look
+            word-break: break-word; // Prevents long URLs from overflowing
+        }
+        a {
+            color: #0073aa; // Standard WordPress link color
+            text-decoration: underline;
+        }
+    }
+}

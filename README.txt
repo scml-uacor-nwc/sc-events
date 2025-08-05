@@ -119,3 +119,12 @@ The shortcode is powerful and can be customized with attributes.
 *   Includes `[sc_events]` shortcode with `limit` and `category` attributes.
 *   Provides templates for the event archive and single event pages.
 *   Includes a "Custom CSS" panel for easy styling overrides.
+
+== AVADA ==
+In your WordPress Dashboard, go to Avada > Layouts.
+Click "Add New" to create a new layout. Give it a name like "Single Event Layout".
+In the Layout Conditions, set it to display on "Events" > "All Events". This tells Avada to use this layout for every single event post.
+Design your layout. You will likely just have a single section with one column.
+Inside that column, add a "Code Block" element (or a "Text Block" element).
+Inside the element, type the single shortcode: [sc_event_details]
+Publish the layout.

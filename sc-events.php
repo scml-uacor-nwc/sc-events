@@ -4,8 +4,8 @@
  * Plugin URI:        https://example.com/
  * Description:       A modular plugin to create and manage events.
  * Version:           2.0.0
- * Author:            Your Name
- * Author URI:        https://example.com/
+ * Author:            Pedro Matias
+ * Author URI:        https://pedromatias.dev/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       sc-events

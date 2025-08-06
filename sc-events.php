@@ -42,3 +42,28 @@ sc_events();
 
 // Register activation hook.
 register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Core\Plugin', 'activate' ] );
+
+
+/**
+ * Trimmed excerpt by character count for events.
+ */
+function sc_events_get_trimmed_excerpt( $char_limit = 140 ) { 
+    $content = get_the_content();
+    $content = strip_tags( strip_shortcodes( $content ) );
+    
+    if ( mb_strlen( $content ) <= $char_limit ) {
+        return $content;
+    }
+    
+    // Trim the string to the character limit
+    $excerpt = mb_substr( $content, 0, $char_limit );
+    
+    // Find the last space to avoid cutting a word in half
+    $last_space = mb_strrpos( $excerpt, ' ' );
+    
+    if ( $last_space !== false ) {
+        $excerpt = mb_substr( $excerpt, 0, $last_space );
+    }
+    
+    return $excerpt . '...';
+}

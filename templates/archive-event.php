@@ -26,7 +26,10 @@ get_header(); ?>
                     $month = $pt_months[ $month_num ];
                     $categories = get_the_terms( get_the_ID(), 'event_category' );
                     ?>
-                    <a href="<?php the_permalink(); ?>" class="sc-events-card">
+                    // Inside templates/archive-event.php
+
+                <a href="<?php the_permalink(); ?>" class="sc-events-card">
+                    <div class="sc-events-card__inner">
                         <div class="sc-events-card__date">
                             <span class="sc-events-card__day"><?php echo esc_html( $day ); ?></span>
                             <span class="sc-events-card__month"><?php echo esc_html( $month ); ?></span>
@@ -36,8 +39,12 @@ get_header(); ?>
                             <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
                                 <p class="sc-events-card__category"><?php echo esc_html( $categories[0]->name ); ?></p>
                             <?php endif; ?>
+                            <div class="sc-events-card__excerpt">
+                                <?php echo esc_html( \SCEvents\sc_events_get_trimmed_excerpt( 40 ) ); ?>
+                            </div>
                         </div>
-                    </a>
+                    </div>
+                </a>
                 <?php endwhile; ?>
             </div>
             <?php the_posts_pagination(); ?>

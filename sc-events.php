@@ -37,7 +37,7 @@ function sc_events() {
     return Core\Plugin::instance();
 }
 
-// Kick off the plugin.
+// Kick off
 sc_events();
 
 // Register activation hook.
@@ -45,7 +45,7 @@ register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Core\Plugin', 'activate'
 
 
 /**
- * Trimmed excerpt by character count for events.
+ * Trimmed excerpt ( the_excerpt() ) by character count for events.
  */
 function sc_events_get_trimmed_excerpt( $char_limit = 140 ) { 
     $content = get_the_content();

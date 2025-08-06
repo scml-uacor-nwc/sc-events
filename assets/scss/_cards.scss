@@ -49,13 +49,15 @@
     z-index: 1;
     transition: all 0.3s ease-in-out;
 
+    // --- HOVER LOGIC ---
     @media (min-width: 769px) {
-        .sc-events-card:hover & {
+        // Apply hover effects ONLY if the grid does NOT have the disabling class.
+        .sc-events-archive__grid:not(.sc-events-hover-disabled) .sc-events-card:hover & {
             top: -15px;
             left: -15px;
             width: calc(100% + 30px);
             height: auto;
-            min-height: 200px; // A good minimum height for the pop-up
+            min-height: 200px;
             padding: 15px;
             background: #fff;
             border-radius: 8px;
@@ -93,7 +95,6 @@
 
 .sc-events-card__details {
     text-align: left;
-    // THE FIX: This container no longer expands, so its content is static.
 }
 
 .sc-events-card__title {
@@ -109,12 +110,10 @@
 }
 
 .sc-events-card__excerpt {
-    // THE FIX: The excerpt is now positioned absolutely relative to the .sc-events-card__inner wrapper.
     position: absolute;
-    top: 115px; // Positioned below the 80px date box + 15px padding
-    left: 15px; // Aligned with the left padding of the pop-up card
-    right: 15px; // Constrained by the right padding of the pop-up card
-    
+    top: 115px;
+    left: 15px;
+    right: 15px;
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -126,8 +125,9 @@
     @media (min-width: 769px) {
         transition: max-height 0.4s ease, opacity 0.3s ease;
         
-        .sc-events-card:hover & {
-            max-height: 150px; // Allow space for the excerpt to appear
+        // Apply hover effects ONLY if the grid does NOT have the disabling class.
+        .sc-events-archive__grid:not(.sc-events-hover-disabled) .sc-events-card:hover & {
+            max-height: 150px;
             opacity: 1;
         }
     }

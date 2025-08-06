@@ -1,6 +1,6 @@
 <?php
 /**
- * Registers the custom post type for Events and its associated taxonomies.
+ * Registers the custom post type (CPT) for Events and its associated taxonomies.
  *
  * @package SCEvents
  */
@@ -12,17 +12,9 @@ namespace SCEvents\PostTypes;
  */
 class Event {
 
-    /**
-     * The slug for the custom post type.
-     * @var string
-     */
-    private $post_type = 'event';
+    private $post_type = 'event'; // The slug for the custom post type.
 
-    /**
-     * The slug for the custom taxonomy.
-     * @var string
-     */
-    private $taxonomy_slug = 'event_category';
+    private $taxonomy_slug = 'event_category'; // The slug for the custom taxonomy.
 
     /**
      * Constructor. Hooks the registration functions to WordPress's 'init' action.
@@ -33,7 +25,7 @@ class Event {
     }
 
     /**
-     * Registers the custom taxonomy for event categories.
+     * Registers the custom taxonomy.
      */
     public function register_taxonomy() {
         $labels = [

@@ -15,7 +15,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 spl_autoload_register(function ( $class ) {
-    // Only autoload classes from this plugin's namespace.
+    // Only autoload classes from this namespace.
     if ( strpos( $class, __NAMESPACE__ . '\\' ) !== 0 ) {
         return;
     }

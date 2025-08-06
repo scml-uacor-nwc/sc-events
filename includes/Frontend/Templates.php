@@ -45,7 +45,7 @@ class Templates {
             return $plugin_template;
         }
 
-        // Fallback to a default template if something goes wrong.
+        // Fallback to a default template if something fails.
         return '';
     }
 }

@@ -47,7 +47,7 @@
   transition: all 0.3s ease-in-out;
 }
 @media (min-width: 769px) {
-  .sc-events-card:hover .sc-events-card__inner {
+  .sc-events-archive__grid:not(.sc-events-hover-disabled) .sc-events-card:hover .sc-events-card__inner {
     top: -15px;
     left: -15px;
     width: calc(100% + 30px);
@@ -120,7 +120,7 @@
   .sc-events-card__excerpt {
     transition: max-height 0.4s ease, opacity 0.3s ease;
   }
-  .sc-events-card:hover .sc-events-card__excerpt {
+  .sc-events-archive__grid:not(.sc-events-hover-disabled) .sc-events-card:hover .sc-events-card__excerpt {
     max-height: 150px;
     opacity: 1;
   }

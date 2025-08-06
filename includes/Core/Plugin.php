@@ -36,7 +36,6 @@ final class Plugin {
         new \SCEvents\Assets\Enqueue();
         new \SCEvents\Frontend\Templates();
         new \SCEvents\Frontend\Shortcodes(); 
-        // We will add more modules here later (Assets, Frontend).
     }
     
     /**

@@ -53,16 +53,25 @@ class Shortcodes {
             [
                 'limit'    => 3,
                 'category' => '',
-                'columns'  => '3', // Our new attribute
+                'columns'  => '3',
+                'excerpt_length' => 80,
+                'hover'          => 'true',
             ],
             $atts,
             'sc_events'
         );
         
-        // Validate the columns attribute to ensure it's a valid number.
+        // Columns logic
         $allowed_cols = ['1', '2', '3'];
         $columns = in_array( $atts['columns'], $allowed_cols ) ? $atts['columns'] : '3';
         $grid_class = 'sc-events-grid--cols-' . esc_attr( $columns );
+
+        // HOVER LOGIC
+        // If the user sets hover="false", add disabling class.
+        $hover_enabled = filter_var($atts['hover'], FILTER_VALIDATE_BOOLEAN);
+        if ( !$hover_enabled ) {
+            $grid_class .= ' sc-events-hover-disabled';
+        }
 
         $query_args = [
             'post_type'      => 'event',
@@ -96,9 +105,9 @@ class Shortcodes {
         ob_start();
 
         if ( $events_query->have_posts() ) {
-            // We add the dynamic $grid_class to our div.
+            // Adding the dynamic $grid_class to our div.
             echo '<div class="sc-events-shortcode-wrapper">';
-            echo '<div class="sc-events-archive__grid ' . $grid_class . '">'; // Added class here
+            echo '<div class="sc-events-archive__grid ' . $grid_class . '">';
 
             while ( $events_query->have_posts() ) {
                 $events_query->the_post();
@@ -122,7 +131,7 @@ class Shortcodes {
                                 <p class="sc-events-card__category"><?php echo esc_html( $categories[0]->name ); ?></p>
                             <?php endif; ?>
                             <div class="sc-events-card__excerpt">
-                                <?php echo esc_html( \SCEvents\sc_events_get_trimmed_excerpt( 80 ) ); ?>
+                                <?php echo esc_html( \SCEvents\sc_events_get_trimmed_excerpt( intval($atts['excerpt_length']) ) ); ?>
                             </div>
                         </div>
                     </div>

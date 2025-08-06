@@ -42,7 +42,7 @@ class EventMeta {
         $start_date_db = get_post_meta( $post->ID, '_event_start_date_time', true );
         $end_date_db   = get_post_meta( $post->ID, '_event_end_date_time', true );
 
-        // **THE FIX IS HERE:** Convert DB format to the input field's required format.
+        // **THE FIX FOR DATA FORMATTING:** Convert DB format to the input field's required format.
         $start_date_value = ! empty( $start_date_db ) ? date( 'Y-m-d\TH:i', strtotime( $start_date_db ) ) : '';
         $end_date_value   = ! empty( $end_date_db ) ? date( 'Y-m-d\TH:i', strtotime( $end_date_db ) ) : '';
 

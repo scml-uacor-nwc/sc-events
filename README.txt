@@ -11,119 +11,181 @@ A simple and flexible plugin to create, manage, and display events using a short
 
 == Description ==
 
-SC Events provides a simple and powerful way to create and display events on your WordPress site. It's designed to be lightweight and easy to use, giving you control over your event listings without unnecessary complexity.
+O SC Events oferece uma maneira simples de criar e exibir eventos num site WordPress. 
+O SC Events foi projetado para ser leve e fácil de usar, permitindo um controlo sobre multiplos eventos sem complexidade desnecessária.
 
-**Core Features:**
 
-*   **Custom Event Post Type:** Adds a dedicated "Events" menu to your WordPress admin area for easy management.
-*   **Detailed Event Information:** Attach crucial information to each event, including:
-    *   Start Date and Hour
-    *   End Date and Hour
-    *   Event Place or Location
-    *   A URL for registration
-    *   Contact information
-*   **Event Categories:** Organize your events with custom categories (e.g., "Workshops", "Webinars", "Conferences").
-*   **Powerful Shortcode:** Use the `[sc_events]` shortcode to display a clean, modern grid of event cards on any page, post, or widget area.
-*   **Customizable Display:** The shortcode supports attributes to control how many events are shown and to filter them by category.
-*   **Automatic Events Page:** All your upcoming events are automatically displayed on a dedicated archive page at `yoursite.com/events`.
-*   **Custom CSS Panel:** Easily tweak the styles of your event cards and pages by adding your own CSS rules directly from the admin dashboard, no file editing required.
+PLUGIN SC EVENTS: GUIA DO UTILIZADOR
+====================================
 
-This plugin is perfect for small businesses, community groups, educational institutions, or anyone who needs to display a clean agenda of upcoming events.
+Bem-vindo ao plugin SC Events! Este guia irá explicar como criar, gerir e exibir listas de eventos.
 
-== Installation ==
 
-1.  **From your WordPress Dashboard (easiest):**
-    *   Navigate to 'Plugins' > 'Add New'.
-    *   Click 'Upload Plugin'.
-    *   Upload the `sc-events.zip` file and click 'Install Now'.
-    *   Activate the plugin through the 'Plugins' menu in WordPress.
+ÍNDICE
+------
 
-2.  **Via FTP:**
-    *   Unzip the `sc-events.zip` file.
-    *   Upload the `sc-events` folder to the `/wp-content/plugins/` directory on your server.
-    *   Activate the plugin through the 'Plugins' menu in WordPress.
+1. Instalação e Primeiros Passos
+2. Criar e Gerir Eventos
+3. Exibir Eventos com Shortcodes
+   - Utilização Básica
+   - Atributos do Shortcode
+4. Personalizar Estilos com CSS
+5. Integração com Page Builders (Avada & Elementor)
+   - Como Usar com o Avada
+   - Como Usar com o Elementor
 
-3.  **IMPORTANT POST-ACTIVATION STEP:**
-    *   After activating, go to **Settings > Permalinks** in your admin dashboard.
-    *   You don't need to change anything, just click the **"Save Changes"** button once. This registers the new `/events/` URL with WordPress.
 
-== How to Use the Plugin ==
+1. INSTALAÇÃO E PRIMEIROS PASSOS
+---------------------------------
 
-**1. Creating an Event**
+Antes de começar, certifique-se de que tem o ficheiro `sc-events.zip`.
+Pode obter o ficheiro em "https://github.com/scml-uacor-nwc/sc-events"
 
-*   Navigate to the **Events** menu in your WordPress admin dashboard and click **"Add New"**.
-*   Enter a **Title** for your event.
-*   Use the main content editor to write a **brief introduction** or description of the event.
-*   In the **"Event Details"** box, fill in the specific information:
-    *   **Start Date and Hour:** When the event begins.
-    *   **End Date and Hour:** When the event ends. (Leave empty for single-day events).
-    *   **Place:** The location of the event (e.g., "Zoom", "Main Auditorium").
-    *   **Registry (URL):** The full link to a registration page or form.
-    *   **Contacts:** Contact info like a phone number or email address.
-*   On the right sidebar, use the **"Event Categories"** box to assign the event to a category. You can create new categories here as well.
-*   Click the **"Publish"** button to save your event.
+Para Instalar o Plugin:
+1. No seu Painel do WordPress, navegue até Plugins > Adicionar Novo.
+2. Clique no botão "Carregar plugin" no topo da página.
+3. Escolha o ficheiro `sc-events.zip` do seu computador e clique em "Instalar agora".
+4. Após a instalação, clique em "Ativar Plugin".
 
-**2. Displaying Your Events**
+*** IMPORTANTE ***
+Depois de ativar o plugin, tem de atualizar as ligações permanentes do seu site.
+1. Vá a Definições > Ligações Permanentes.
+2. Não precisa de alterar nenhuma definição. Apenas clique no botão "Guardar Alterações".
+3. Este passo garante que a sua página principal de eventos em `oseusite.com/events` irá funcionar corretamente.
 
-You have two primary ways to display your events to visitors:
 
-*   **The Main Archive Page (Automatic):**
-    *   Simply direct your visitors to `http://www.yoursite.com/events/`. This page will automatically show all of your upcoming events in a grid.
+2. CRIAR E GERIR EVENTOS
+-------------------------
 
-*   **Using the Shortcode (Flexible):**
-    *   You can place your event grid on ANY page or post.
-    *   Edit a page and add a "Shortcode" block.
-    *   Use the `[sc_events]` shortcode.
+O plugin adiciona um novo menu "Events" ao seu painel de administração do WordPress.
 
-**3. Customizing the Shortcode with Attributes**
+Para Criar um Novo Evento:
+1. Navegue até Events > Add New (Adicionar Novo).
+2. Título: Adicione um título para o seu evento.
+3. Introdução/Descrição: 
+    - Use o editor de conteúdo principal para escrever sobre o seu evento. 
+    - A primeira parte deste texto será usada para o efeito de hover nos cartões de evento.
+4. Caixa "Event Details" (Detalhes do Evento): Abaixo do editor principal, encontrará uma caixa com os seguintes campos:
+   - Start Date and Hour (Data e Hora de Início): A hora exata em que o evento começa. Este campo é OBRIGATÓRIO.
+   - End Date and Hour (Data e Hora de Fim): A hora em que o evento termina. Pode deixar em branco para eventos de um só dia.
+   - Place (Local): A localização do evento (ex: "Sala de Extrações", "Teams", "Online" ou "https://youtube/o_meu_evento").
+   - Registry (URL) (Registo): O link completo para uma página de registo (ex: `https://exemplo.com/registo`).
+   - Contacts (Contactos): Qualquer informação de contacto, como um número de telefone ou email.
+5. Event Categories (Categorias de Eventos) (Barra lateral direita): 
+    - Organize os seus eventos atribuindo-os a categorias. 
+    - Pode criar novas categorias diretamente aqui, clicando em "Adicionar Nova Categoria de Evento".
+6. Featured Image (Imagem Destacada) (Barra lateral direita): Adicione uma imagem principal para o seu evento. Esta imagem aparecerá no topo da página de detalhe do evento.
+7. Clique em "Publicar" para guardar o seu evento.
 
-The shortcode is powerful and can be customized with attributes.
 
-*   **Basic Usage (shows the next 3 upcoming events):**
-    `[sc_events]`
+3. EXIBIR EVENTOS COM SHORTCODES
+---------------------------------
 
-*   **The `limit` attribute (to control the number of events shown):**
-    `[sc_events limit="5"]`
+A funcionalidade mais poderosa deste plugin é o shortcode `[sc_events]`, que lhe permite colocar uma grelha de cartões de eventos em qualquer parte do seu site.
 
-*   **The `category` attribute (to show events from a specific category):**
-    *   First, you need the category's "slug". You can find this by going to **Events > Categories**. The slug is the URL-friendly version of the name.
-    *   Example: `[sc_events category="workshops"]`
+Utilização Básica:
+Para exibir uma grelha padrão com os próximos 3 eventos, basta adicionar um Bloco de Shortcode (no Gutenberg) ou um Bloco de Texto/Código (num page builder) e insira o seguinte:
+[sc_events]
 
-*   **Combining Attributes:**
-    *   You can use multiple attributes at the same time.
-    *   Example (shows the next 2 events from the "webinars" category):
-        `[sc_events limit="2" category="webinars"]`
+Atributos do Shortcode:
+Pode personalizar o shortcode adicionando "atributos" para controlar o layout e o que é exibido.
 
-**4. Customizing the Style**
+- limit
+  O que faz: Controla o número máximo de eventos a serem exibidos.
+  Exemplo: Para mostrar os próximos 6 eventos:
+  [sc_events limit="6"]
 
-*   Navigate to **Events > Custom CSS**.
-*   Enter any CSS rules you want to apply to the events display. This is a great way to change colors, font sizes, or spacing to match your theme perfectly.
-*   Example: To change the background color of the date box on the event cards to blue, you could add:
-    `.sc-events-card__date { background-color: #0073aa; }`
-*   Click **"Save Changes"**. Your custom styles will now be loaded on the front end.
+- columns
+  O que faz: Define o número de colunas para a grelha em ecrãs de computador (é sempre 1 coluna em dispositivos móveis).
+  Opções: 1, 2, ou 3.
+  Exemplo: Para exibir eventos numa grelha de 2 colunas:
+  [sc_events columns="2"]
 
-== Screenshots ==
+- category
+  O que faz: Filtra a exibição para mostrar apenas eventos de uma categoria específica.
+  Como encontrar o slug: Vá a Events > Categories (Categorias). 
+  O "slug" é o nome da categoria formatado para URL.
+  Exemplo: Para mostrar apenas eventos da categoria com o slug "workshops":
+  [sc_events category="workshops"]
 
-1. The "All Events" admin screen showing a list of created events.
-2. The "Add New Event" screen, highlighting the "Event Details" meta box and the "Event Categories" box.
-3. The front-end display of the event cards (the archive page or a shortcode).
-4. The front-end display of a single event detail page.
-5. The "Custom CSS" admin page showing the CSS editor.
+- excerpt_length
+  O que faz: Controla o número de caracteres exibidos no texto do pop-up ao passar o rato.
+  Exemplo: Para mostrar um excerto mais longo com 120 caracteres:
+  [sc_events excerpt_length="120"]
 
-== Changelog ==
+- hover
+  O que faz: Ativa ou desativa o efeito de pop-up ao passar o rato sobre os cartões de evento.
+  Opções: true ou false.
+  Exemplo: Para exibir cartões estáticos sem efeito de hover:
+  [sc_events hover="false"]
 
-= 2.0.0 =
-*   Initial release of the SC Events plugin.
-*   Features: Event Custom Post Type, Event Categories, custom meta fields for event details.
-*   Includes `[sc_events]` shortcode with `limit` and `category` attributes.
-*   Provides templates for the event archive and single event pages.
-*   Includes a "Custom CSS" panel for easy styling overrides.
+Combinar Atributos:
+Pode misturar e combinar atributos para criar a exibição perfeita.
+Exemplo: Mostrar os próximos 4 eventos da categoria "webinars" numa grelha de 2 colunas e sem efeito de hover.
+[sc_events limit="4" columns="2" category="webinars" hover="false"]
 
-== AVADA ==
-In your WordPress Dashboard, go to Avada > Layouts.
-Click "Add New" to create a new layout. Give it a name like "Single Event Layout".
-In the Layout Conditions, set it to display on "Events" > "All Events". This tells Avada to use this layout for every single event post.
-Design your layout. You will likely just have a single section with one column.
-Inside that column, add a "Code Block" element (or a "Text Block" element).
-Inside the element, type the single shortcode: [sc_event_details]
-Publish the layout.
+
+4. PERSONALIZAR ESTILOS COM CSS
+--------------------------------
+
+Se quiser fazer pequenos ajustes de estilo (como alterar cores ou tamanhos de fonte) para corresponder ao seu tema, pode facilmente adicionar as suas próprias regras de CSS.
+
+1. Navegue até Events > Custom CSS.
+2. Insira as suas regras de CSS na caixa de texto.
+3. Clique em "Guardar Alterações".
+
+Exemplo: Para alterar a cor da caixa preta da data para azul, pode adicionar:
+.sc-events-card__date { background-color: #0073aa; }
+
+
+5. INTEGRAÇÃO COM PAGE BUILDERS (AVADA & ELEMENTOR)
+------------------------------------------------------
+
+Este plugin foi construído para ser compatível com page builders. A chave é usar os shortcodes.
+
+Como Usar com o Avada (Fusion Builder):
+
+- Para Exibir a Grelha de Cartões de Evento:
+  1. Edite uma página ou artigo com o Fusion Builder.
+  2. Adicione um elemento "Code Block" (Bloco de Código) ao seu layout.
+  3. Dentro do Bloco de Código, cole o seu shortcode `[sc_events]` desejado (ex: `[sc_events limit="6" columns="3"]`).
+  4. Guarde a página.
+
+- Para Configurar a Página de Detalhe de um Evento:
+  O Avada controla o layout de todos os tipos de posts, por isso precisamos de lhe dizer como exibir os nossos eventos.
+  1. No seu Painel do WordPress, vá a Avada > Layouts.
+  2. Clique em "Add New" para criar um novo Layout. Dê-lhe um nome como "Template Evento Individual".
+  3. Na secção "Layout Conditions", defina a condição para "Events" e depois "All Events". 
+     (Isto diz ao Avada para usar este layout para cada evento individual.)
+  4. Clique em "Create a Custom Layout". Adicione uma Secção e uma Coluna.
+  5. Dentro da coluna, adicione um elemento "Code Block".
+  6. Dentro do Bloco de Código, cole este shortcode específico: [sc_event_details]
+  7. Publique o layout. Agora, todas as suas páginas de eventos individuais usarão este template e serão exibidas corretamente.
+
+  == AVADA == In English for easy of use & understanding
+    In your WordPress Dashboard, go to Avada > Layouts.
+    Click "Add New" to create a new layout. Give it a name like "Single Event Layout".
+    In the Layout Conditions, set it to display on "Events" > "All Events". This tells Avada to use this layout for every single event post.
+    Design your layout. You will likely just have a single section with one column.
+    Inside that column, add a "Code Block" element (or a "Text Block" element).
+    Inside the element, type the single shortcode: [sc_event_details]
+    Publish the layout.
+
+Como Usar com o Elementor:
+
+- Para Exibir a Grelha de Cartões de Evento:
+  1. Edite uma página ou artigo com o Elementor.
+  2. No painel de widgets à esquerda, procure pelo widget "Shortcode".
+  3. Arraste o widget Shortcode para o seu layout.
+  4. No painel de configurações do widget, cole o seu shortcode `[sc_events]` desejado.
+  5. Guarde a página.
+
+- Para Configurar a Página de Detalhe de um Evento:
+  O Elementor Pro permite-lhe criar templates para tipos de post personalizados.
+  1. No seu Painel do WordPress, vá a Modelos > Construtor de Temas (Theme Builder).
+  2. Vá ao separador "Artigo Individual" (Single Post) e clique em "Adicionar Novo".
+  3. Quando lhe for pedido um Tipo de Post, selecione "Event". Dê um nome ao seu modelo (ex: "Template Evento Individual").
+  4. Nas Condições de Exibição, certifique-se de que está definido para "Events" > "All".
+  5. Desenhe a sua página. Arraste um widget "Shortcode" para a área de conteúdo principal.
+  6. Nas configurações do widget, cole este shortcode específico: [sc_event_details]
+  7. Publique o modelo. Agora, todas as suas páginas de eventos individuais usarão este modelo do Elementor.

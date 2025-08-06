@@ -7,7 +7,7 @@ Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 
-A simple and flexible plugin to create, manage, and display events using a shortcode or a dedicated archive page.
+Um plugin simples e flexível para criar, gerir e exibir eventos usando um shortcode e uma página de arquivo dedicada.
 
 == Description ==
 
@@ -17,8 +17,6 @@ O SC Events foi projetado para ser leve e fácil de usar, permitindo um controlo
 
 PLUGIN SC EVENTS: GUIA DO UTILIZADOR
 ====================================
-
-Bem-vindo ao plugin SC Events! Este guia irá explicar como criar, gerir e exibir listas de eventos.
 
 
 ÍNDICE

@@ -160,14 +160,47 @@ Como Usar com o Avada (Fusion Builder):
   6. Dentro do Bloco de Código, cole este shortcode específico: [sc_event_details]
   7. Publique o layout. Agora, todas as suas páginas de eventos individuais usarão este template e serão exibidas corretamente.
 
-  == AVADA == In English for easy of use & understanding
-    In your WordPress Dashboard, go to Avada > Layouts.
-    Click "Add New" to create a new layout. Give it a name like "Single Event Layout".
-    In the Layout Conditions, set it to display on "Events" > "All Events". This tells Avada to use this layout for every single event post.
-    Design your layout. You will likely just have a single section with one column.
-    Inside that column, add a "Code Block" element (or a "Text Block" element).
-    Inside the element, type the single shortcode: [sc_event_details]
-    Publish the layout.
+  A Nota Importante Sobre Estilos no Avada
+-------------------------------------------
+    O Avada tem um sistema de estilos muito poderoso que controla a aparência de todo o conteúdo do seu site, incluindo os títulos (H1, H2, etc.) e os parágrafos.
+
+    Depois de inserir o shortcode do evento, poderá notar que o espaçamento ou o tamanho do texto não parece perfeito. Isto é normal e esperado. O Avada está a aplicar os seus próprios estilos globais ao HTML do nosso plugin.
+
+    A forma correta de ajustar a aparência é usar as ferramentas do próprio Avada:
+
+    1.  **Ajustar o Espaçamento:**
+        - Edite a sua página com o Fusion Builder.
+        - Selecione o "Elemento" que contém o seu shortcode `[sc_events]` (provavelmente um Bloco de Código).
+        - Vá ao separador "Design".
+        - Use as opções de "Margin" (margem) para adicionar espaço acima ou abaixo do bloco de eventos, para que não se sobreponha a outros elementos.
+
+    2.  **Ajustar os Estilos do Texto do Evento:**
+        - Se os títulos dos eventos parecerem demasiado grandes, pode usar o painel de "Custom CSS" do nosso plugin para os ajustar.
+        - Vá a Events > Custom CSS e adicione uma regra mais específica. Por exemplo:
+        
+        /* Força um tamanho de fonte mais pequeno para os títulos dos cartões de evento */
+        .sc-events-card__title {
+            font-size: 18px !important;
+            line-height: 1.2 !important;
+        }
+
+        /* Força um tamanho de fonte mais pequeno para o excerto */
+        .sc-events-card__excerpt {
+            font-size: 14px !important;
+        }
+
+    Usar `!important` não é normalmente a melhor prática, mas é muitas vezes necessário para substituir os estilos fortes de temas complexos como o Avada.
+
+    Ao usar as ferramentas do Avada para o espaçamento e o painel de CSS do plugin para ajustes finos, garante que a aparência final fica perfeitamente integrada com o resto do seu site.
+
+    == AVADA == In English for easy of use & understanding
+        In your WordPress Dashboard, go to Avada > Layouts.
+        Click "Add New" to create a new layout. Give it a name like "Single Event Layout".
+        In the Layout Conditions, set it to display on "Events" > "All Events". This tells Avada to use this layout for every single event post.
+        Design your layout. You will likely just have a single section with one column.
+        Inside that column, add a "Code Block" element (or a "Text Block" element).
+        Inside the element, type the single shortcode: [sc_event_details]
+        Publish the layout.
 
 Como Usar com o Elementor:
 

@@ -162,7 +162,7 @@ Como Usar com o Avada (Fusion Builder):
 
   A Nota Importante Sobre Estilos no Avada
 -------------------------------------------
-    O Avada tem um sistema de estilos muito poderoso que controla a aparência de todo o conteúdo do seu site, incluindo os títulos (H1, H2, etc.) e os parágrafos.
+    O Avada tem um sistema de estilos poderoso que controla a aparência de todo o conteúdo do site.
 
     Depois de inserir o shortcode do evento, poderá notar que o espaçamento ou o tamanho do texto não parece perfeito. Isto é normal e esperado. O Avada está a aplicar os seus próprios estilos globais ao HTML do nosso plugin.
 
@@ -191,7 +191,8 @@ Como Usar com o Avada (Fusion Builder):
 
     Usar `!important` não é normalmente a melhor prática, mas é muitas vezes necessário para substituir os estilos fortes de temas complexos como o Avada.
 
-    Ao usar as ferramentas do Avada para o espaçamento e o painel de CSS do plugin para ajustes finos, garante que a aparência final fica perfeitamente integrada com o resto do seu site.
+    Use as ferramentas do Avada para tratar espaçamentos e o painel de CSS do plugin para pequenos ajustes. 
+    Assim garante-se que a aparência final fica perfeitamente integrada com o resto do site.
 
     == AVADA == In English for easy of use & understanding
         In your WordPress Dashboard, go to Avada > Layouts.

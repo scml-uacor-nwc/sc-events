@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       SC Events
- * Plugin URI:        https://example.com/
+ * Plugin URI:        https://scml.pt
  * Description:       A modular plugin to create and manage events.
  * Version:           2.0.0
  * Author:            Pedro Matias

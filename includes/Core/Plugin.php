@@ -1,16 +1,17 @@
 <?php
+/**
+ * The main plugin class, responsible for loading modules.
+ * @package SCEvents
+ */
+
 namespace SCEvents\Core;
 
 use SCEvents\PostTypes;
 use SCEvents\MetaFields;
 use SCEvents\Admin;
+use SCEvents\Assets;
+use SCEvents\Frontend;
 
-/**
- * The main plugin class.
- * 
- * This class only job is to create a new instance of each of our module classes.
- * 
- */
 final class Plugin {
 
     private static $_instance = null;
@@ -27,21 +28,20 @@ final class Plugin {
     }
 
     /**
-     * Load all the plugin modules.
+     * Instantiate and load all the plugin modules.
      */
     private function load_modules() {
         new PostTypes\Event();
         new MetaFields\EventMeta();
-        new Admin\CustomCss();
-        new \SCEvents\Assets\Enqueue();
-        new \SCEvents\Frontend\Templates();
-        new \SCEvents\Frontend\Shortcodes(); 
+        new Admin\Settings(); // Replaced CustomCss with Settings
+        new Assets\Enqueue();
+        new Frontend\Templates();
+        new Frontend\Shortcodes();
     }
     
-    /**
-     * Code to run on plugin activation.
-     */
     public static function activate() {
+        $post_type = new PostTypes\Event();
+        $post_type->register_post_type();
         flush_rewrite_rules();
     }
 }

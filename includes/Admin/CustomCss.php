@@ -38,37 +38,41 @@ class CustomCss {
                     <code>.sc-events-archive__grid</code>
                 </p>
                 <pre>/* Altera o espaçamento entre os cartões */
-.sc-events-archive__grid {
-    gap: 4rem;
-}</pre>
+                    .sc-events-archive__grid {
+                        gap: 4rem;
+                    }
+                </pre>
 
                 <p>
                     <strong><?php _e( 'A caixa preta da data:', 'sc-events' ); ?></strong>
                     <code>.sc-events-card__date</code>
                 </p>
                 <pre>/* Altera a cor de fundo da caixa da data */
-.sc-events-card__date {
-    background-color: #c0392b; /* Vermelho */
-}</pre>
+                    .sc-events-card__date {
+                        background-color: #c0392b; /* Vermelho */
+                    }
+                </pre>
 
                 <p>
                     <strong><?php _e( 'O título do evento no cartão:', 'sc-events' ); ?></strong>
                     <code>.sc-events-card__title</code>
                 </p>
                 <pre>/* Remove o sublinhado e altera a cor do título */
-.sc-events-card__title {
-    text-decoration: none;
-    color: #3498db;
-}</pre>
+                    .sc-events-card__title {
+                        text-decoration: none;
+                        color: #3498db;
+                    }
+                </pre>
 
                 <p>
                     <strong><?php _e( 'O pop-up de hover (o cartão branco):', 'sc-events' ); ?></strong>
                     <code>.sc-events-card:hover .sc-events-card__inner</code>
                 </p>
                 <pre>/* Adiciona uma borda azul ao pop-up de hover */
-.sc-events-archive__grid:not(.sc-events-hover-disabled) .sc-events-card:hover .sc-events-card__inner {
-    border: 2px solid #3498db;
-}</pre>
+                    .sc-events-archive__grid:not(.sc-events-hover-disabled) .sc-events-card:hover .sc-events-card__inner {
+                        border: 2px solid #3498db;
+                    }
+                </pre>
 
                 <hr>
 
@@ -79,27 +83,30 @@ class CustomCss {
                     <code>.sc-events-single__title</code>
                 </p>
                 <pre>/* Altera o tamanho da fonte do título principal */
-.sc-events-single__title {
-    font-size: 48px;
-}</pre>
+                    .sc-events-single__title {
+                        font-size: 48px;
+                    }
+                </pre>
 
                 <p>
                     <strong><?php _e( 'Os títulos das caixas de detalhes (fundo dourado):', 'sc-events' ); ?></strong>
                     <code>.sc-events-single__detail-title</code>
                 </p>
                 <pre>/* Altera a cor de fundo dos títulos dos detalhes */
-.sc-events-single__detail-title {
-    background-color: #2ecc71; /* Verde */
-}</pre>
+                    .sc-events-single__detail-title {
+                        background-color: #2ecc71; /* Verde */
+                    }
+                </pre>
 
                  <p>
                     <strong><?php _e( 'O contentor da grelha de detalhes:', 'sc-events' ); ?></strong>
                     <code>.sc-events-single__details-grid</code>
                 </p>
                 <pre>/* Altera a cor de fundo da área da grelha de detalhes */
-.sc-events-single__details-grid {
-    background-color: #ecf0f1;
-}</pre>
+                    .sc-events-single__details-grid {
+                        background-color: #ecf0f1;
+                    }
+                </pre>
 
             </div>
             <!-- CSS REFERENCE GUIDE ENDS -->

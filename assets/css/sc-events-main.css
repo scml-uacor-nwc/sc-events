@@ -126,6 +126,23 @@
   }
 }
 
+.sc-events-archive__grid.sc-events-hover-disabled .sc-events-card:hover .sc-events-card__inner {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  align-items: center;
+  z-index: 1;
+}
+.sc-events-archive__grid.sc-events-hover-disabled .sc-events-card:hover .sc-events-card__excerpt {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
 .sc-events-single-container {
   max-width: 960px;
   margin: 0 auto;

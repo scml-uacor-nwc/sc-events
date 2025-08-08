@@ -10,16 +10,12 @@ namespace SCEvents\Assets;
 class Enqueue {
 
     public function __construct() {
-        // Register assets early so they are always available.
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
-
-        // Conditionally load the assets on the dedicated plugin pages.
         add_action( 'wp_enqueue_scripts', [ $this, 'conditionally_enqueue_assets' ] );
     }
 
     /**
-     * Registers all plugin assets with WordPress. This makes them available
-     * to be called by either the shortcode or the templates.
+     * Registers the main styles and scripts for the plugin.
      */
     public function register_assets() {
         wp_register_style(

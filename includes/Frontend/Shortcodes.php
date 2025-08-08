@@ -44,7 +44,7 @@ class Shortcodes {
                 'category'       => '',
                 'columns'        => '3',
                 'excerpt_length' => 80,
-                'hover'          => null, // Set default to null to detect if it was used
+                'hover'          => null,
             ],
             $atts,
             'sc_events'

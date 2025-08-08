@@ -2,7 +2,7 @@
 /**
  * Plugin Autoloader
  * 
- * This is the central orchestrator. It will load all our other modules (PostTypes, MetaFields, etc.). It uses the Singleton pattern.
+ * This is the central orchestrator. It will load all our other modules. We're using the Singleton pattern.
  *
  * @package SCEvents
  */

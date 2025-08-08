@@ -6,7 +6,7 @@
 
 get_header();
 
-// Get the plugin options from the database.
+// Get the plugin options from the DB.
 $sc_events_options = get_option( 'sc_events_options' );
 $is_hover_disabled = ! empty( $sc_events_options['disable_archive_hover'] );
 

@@ -33,7 +33,7 @@ final class Plugin {
     private function load_modules() {
         new PostTypes\Event();
         new MetaFields\EventMeta();
-        new Admin\Settings(); // Replaced CustomCss with Settings
+        new Admin\Settings();
         new Assets\Enqueue();
         new Frontend\Templates();
         new Frontend\Shortcodes();

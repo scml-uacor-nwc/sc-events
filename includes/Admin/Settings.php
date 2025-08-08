@@ -125,7 +125,7 @@ class Settings {
         ?>
         <label for="sc_events_disable_archive_hover">
             <input type="checkbox" id="sc_events_disable_archive_hover" name="sc_events_options[disable_archive_hover]" value="1" <?php checked( $value, 1 ); ?> />
-            <?php _e( 'Disable hover effect on ALL event cards (overrides shortcode).', 'sc-events' ); ?>
+            <?php _e( 'Desactiva o efeito hover em TODOS os cartões de eventos (o atributo do shortcode vai substituir esta regra).', 'sc-events' ); ?>
         </label>
         <?php
     }

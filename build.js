@@ -6,8 +6,22 @@ const path = require('path');
 
 // --- Configuration ---
 const PLUGIN_NAME = 'sc-events';
-// THE FIX: Save the zip file in the parent directory.
-const ZIP_PATH = `../${PLUGIN_NAME}.zip`; 
+
+// Extract version from the main plugin file
+function getPluginVersion() {
+    try {
+        const pluginContent = fs.readFileSync(`${PLUGIN_NAME}.php`, 'utf8');
+        const versionMatch = pluginContent.match(/Version:\s*([\d.]+)/);
+        return versionMatch ? versionMatch[1] : '1.0.0';
+    } catch (error) {
+        console.warn('Could not read version from plugin file, using 1.0.0');
+        return '1.0.0';
+    }
+}
+
+const VERSION = getPluginVersion();
+// THE FIX: Save the zip file in the parent directory with version number.
+const ZIP_PATH = `../${PLUGIN_NAME}-v${VERSION}.zip`; 
 
 // Define all files and folders to be EXCLUDED.
 const EXCLUDED_ITEMS = [
@@ -21,12 +35,12 @@ const EXCLUDED_ITEMS = [
     'build.js',
     'readme.md',
     'guide.txt',
-    `${PLUGIN_NAME}.zip`,
+    `${PLUGIN_NAME}*.zip`,
     'build' // Exclude the old build folder name just in case
 ];
 
 async function build() {
-    console.log(`Starting the build process for ${PLUGIN_NAME}...`);
+    console.log(`Starting the build process for ${PLUGIN_NAME} v${VERSION}...`);
 
     try {
         // 1. Clean up the old zip file if it exists.

@@ -73,6 +73,14 @@ class Settings {
             'sc_events_settings_section',
             [ 'description_callback' => [ $this, 'render_css_guide' ] ]
         );
+
+        add_settings_field(
+            'shortcode_instructions',
+            __( 'Shortcode Instructions', 'sc-events' ),
+            [ $this, 'render_shortcode_instructions' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
     }
 
     /**
@@ -95,6 +103,79 @@ class Settings {
             <pre>.sc-events-single__title { font-size: 48px; color: #2c3e50; }</pre>
             <pre>.sc-events-single__detail-title { background: #2ecc71; color: #fff; }</pre>
             <pre>.sc-events-single__detail-item p { background: #eaf2f8; }</pre>
+        </div>
+        <?php
+    }
+
+    public function render_shortcode_instructions() {
+        
+        ?>
+        <div class="sc-events-shortcode-instructions" style="background: #f6f7f7; padding: 1px 20px; border: 1px solid #ddd; margin-top: 10px;">
+            <h2><?php _e( 'Instruções do Shortcode', 'sc-events' ); ?></h2>
+            <p><?php _e( 'A funcionalidade mais poderosa deste plugin é o shortcode <code>[sc_events]</code>, que lhe permite colocar uma grelha de cartões de eventos em qualquer parte do seu site.', 'sc-events' ); ?></p>
+            <h3><?php _e( 'Utilização Básica', 'sc-events' ); ?></h3>
+            <p><?php _e( 'Para exibir uma grelha padrão com os próximos 3 eventos, basta adicionar um Bloco de Shortcode (no Gutenberg) ou um Bloco de Texto/Código (num page builder) e insira o seguinte:', 'sc-events' ); ?></p>
+            <pre><b>[sc_events]</b></pre>
+            <h3><?php _e( 'Atributos do Shortcode', 'sc-events' ); ?></h3>
+            <p><?php _e( 'Pode personalizar o shortcode adicionando "atributos" para controlar o layout e o que é exibido.', 'sc-events' ); ?></p>
+            <ul>
+                <li>
+                    <details>
+                        <summary><strong>limit</strong>:</summary>
+                        <?php _e( 'O que faz: Controla o número máximo de eventos a serem exibidos.', 'sc-events' ); ?><br>
+                        <?php _e( 'Exemplo: Para mostrar os próximos 6 eventos:', 'sc-events' ); ?><br>
+                    </details>
+                    <pre><b>[sc_events limit="6"]</b></pre>
+                </li>
+                <li>
+                    <details>
+                        <summary><strong>columns</strong>:</summary> 
+                        <?php _e( 'O que faz: Define o número de colunas para a grelha em ecrãs de computador (é sempre 1 coluna em dispositivos móveis).', 'sc-events' ); ?><br>
+                        <?php _e( 'Opções: 1, 2, ou 3.', 'sc-events' ); ?><br>
+                        <?php _e( 'Exemplo: Para exibir eventos numa grelha de 2 colunas:', 'sc-events' ); ?><br>
+                    </details>
+                    <pre><b>[sc_events columns="2"]</b></pre>
+                </li>
+                <li>
+                    <details>
+                        <summary><strong>category</strong>:</summary> 
+                        <?php _e( 'O que faz: Filtra a exibição para mostrar apenas eventos de uma categoria específica.', 'sc-events' ); ?><br>
+                        <?php _e( 'Como encontrar o slug: Vá a Events > Categories (Categorias). O "slug" é o nome da categoria formatado para URL.', 'sc-events' ); ?><br>
+                        <?php _e( 'Exemplo: Para mostrar apenas eventos da categoria com o slug "workshops":', 'sc-events' ); ?><br>
+                    </details>
+                    <pre><b>[sc_events category="workshops"]</b></pre>
+                </li>
+                <li>
+                    <details>
+                        <summary><strong>excerpt_length</strong>:</summary> 
+                        <?php _e( 'O que faz: Controla o número de caracteres exibidos no texto do pop-up ao passar o rato.', 'sc-events' ); ?><br>
+                        <?php _e( 'Exemplo: Para mostrar um excerto mais longo com 120 caracteres:', 'sc-events' ); ?><br>
+                    </details>
+                    <pre><b>[sc_events excerpt_length="120"]</b></pre>
+                </li>
+                <li>
+                    <details>
+                        <summary><strong>hover</strong>:</summary>
+                        <?php _e( 'O que faz: Ativa ou desativa o efeito de pop-up ao passar o rato sobre os cartões de evento.', 'sc-events' ); ?><br>
+                        <?php _e( 'Opções: true ou false.', 'sc-events' ); ?><br>
+                        <?php _e( 'Exemplo: Para exibir cartões estáticos sem efeito de hover:', 'sc-events' ); ?><br>
+                    </details>
+                    <pre><b>[sc_events hover="false"]</b></pre>
+                </li>
+            </ul>
+            <h3><?php _e( 'Exemplos Combinados', 'sc-events' ); ?></h3>
+            <p><?php _e( 'Pode combinar múltiplos atributos para um controlo mais refinado. Aqui estão alguns exemplos:', 'sc-events' ); ?></p>
+            <ul>
+                <li><?php _e( 'Mostrar os próximos 4 eventos numa grelha de 2 colunas:', 'sc-events' ); ?><br>
+                    <pre><b>[sc_events limit="4" columns="2"]</b></pre>
+                </li>
+                <li><?php _e( 'Exibir 5 eventos da categoria "concerts" sem efeito de hover:', 'sc-events' ); ?><br>
+                    <pre><b>[sc_events limit="5" category="concerts" hover="false"]</b></pre>
+                </li>
+                <li><?php _e( 'Mostrar 6 eventos da categoria "workshops" com excertos mais longos:', 'sc-events' ); ?><br>
+                    <pre><b>[sc_events limit="6" category="workshops" excerpt_length="120"]</b></pre>
+                </li>
+            </ul>
         </div>
         <?php
     }

@@ -13,13 +13,9 @@
 
 .sc-events-archive__grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(3, 1fr);
-}
-@media (max-width: 768px) {
-  .sc-events-archive__grid {
-    grid-template-columns: 1fr;
-  }
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+  margin: 50px 0;
 }
 @media (min-width: 769px) {
   .sc-events-archive__grid.sc-events-grid--cols-2 {
@@ -36,10 +32,6 @@
   height: 80px;
   text-decoration: none;
   color: inherit;
-  border: none;
-  border-radius: 0;
-  overflow: hidden;
-  background: transparent;
 }
 
 .sc-events-card__inner {
@@ -49,8 +41,8 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: stretch;
-  gap: 0;
+  align-items: center;
+  gap: 1.5rem;
   background: transparent;
   z-index: 1;
   transition: all 0.3s ease-in-out;
@@ -72,7 +64,7 @@
 }
 
 .sc-events-card__date {
-  background-color: #000;
+  background-color: #222;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -81,49 +73,38 @@
   width: 80px;
   height: 80px;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .sc-events-card__day {
-  font-size: 2.2rem;
-  font-weight: 300;
+  font-size: 2rem;
+  font-weight: bold;
   line-height: 1;
 }
 
 .sc-events-card__month {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1rem;
   text-transform: uppercase;
   line-height: 1;
-  letter-spacing: 1px;
 }
 
 .sc-events-card__details {
   text-align: left;
-  padding: 12px 16px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
 }
 
 .sc-events-card__title {
-  font-size: 16px;
-  margin: 0;
+  font-size: 0.9rem;
+  margin: 0 0 0.25rem 0;
   text-decoration: underline;
-  line-height: 1.2;
-  font-weight: 400;
-  color: #000;
 }
 
 .sc-events-card__category {
-  font-size: 12px;
-  color: #666;
+  font-size: 0.7rem !important;
+  color: #555;
   background: #f5f5f5;
-  margin: 0;
-  padding: 5px;
-  line-height: 1;
+  padding: 3px 10px;
+  margin: 0 !important;
+  max-width: fit-content;
 }
 
 .sc-events-card__excerpt {
@@ -261,25 +242,6 @@
 .sc-events-single__detail-item a {
   color: #0073aa;
   text-decoration: underline;
-}
-
-/* Agenda page specific theme integration */
-.sc-events-agenda #primary.content-area {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.sc-events-agenda .page-header {
-  margin-bottom: 2rem;
-}
-
-.sc-events-agenda .page-content {
-  margin-bottom: 2rem;
-}
-
-.sc-events-agenda .sc-events-archive__grid {
-  max-width: 800px;
 }
 
 /*# sourceMappingURL=sc-events-main.css.map */

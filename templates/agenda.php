@@ -23,7 +23,7 @@ $sc_events_options = get_option( 'sc_events_options' );
 $is_hover_disabled = ! empty( $sc_events_options['disable_archive_hover'] );
 
 // Prepare the CSS class for the grid.
-$grid_classes = 'sc-events-archive__grid sc-events-grid--cols-3';
+$grid_classes = 'sc-events-grid--cols-3';
 if ( $is_hover_disabled ) {
     $grid_classes .= ' sc-events-hover-disabled';
 }

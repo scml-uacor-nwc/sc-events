@@ -42,6 +42,11 @@ final class Plugin {
     public static function activate() {
         $post_type = new PostTypes\Event();
         $post_type->register_post_type();
+        
+        // Register custom rewrite rules for agenda
+        $templates = new Frontend\Templates();
+        $templates->add_rewrite_rules();
+        
         flush_rewrite_rules();
     }
 }

@@ -10,9 +10,16 @@ namespace SCEvents\Frontend;
 class Templates {
     public function __construct() {
         add_filter( 'template_include', [ $this, 'load_template' ] );
+        add_action( 'init', [ $this, 'add_rewrite_rules' ] );
+        add_filter( 'query_vars', [ $this, 'add_query_vars' ] );
     }
 
     public function load_template( $template ) {
+        // Check for the agenda page (upcoming events)
+        if ( get_query_var( 'agenda' ) ) {
+            return $this->get_template_path( 'agenda.php' );
+        }
+
         // Check for the event archive page (the list of all events)
         if ( is_post_type_archive( 'event' ) ) {
             return $this->get_template_path( 'archive-event.php' );
@@ -24,6 +31,24 @@ class Templates {
         }
 
         return $template;
+    }
+
+    /**
+     * Add rewrite rules for the agenda page.
+     */
+    public function add_rewrite_rules() {
+        add_rewrite_rule( '^agenda/?$', 'index.php?agenda=1', 'top' );
+    }
+
+    /**
+     * Add custom query vars.
+     *
+     * @param array $vars Existing query vars.
+     * @return array Modified query vars.
+     */
+    public function add_query_vars( $vars ) {
+        $vars[] = 'agenda';
+        return $vars;
     }
 
     /**

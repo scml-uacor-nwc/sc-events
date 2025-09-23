@@ -4,6 +4,14 @@
  * @package SCEvents
  */
 
+// Add theme body classes for proper styling integration
+add_filter( 'body_class', function( $classes ) {
+    $classes[] = 'page';
+    $classes[] = 'agenda-page';
+    $classes[] = 'sc-events-agenda';
+    return $classes;
+});
+
 get_header();
 
 // Enqueue the plugin styles and scripts
@@ -46,50 +54,62 @@ if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 
 ?>
 
-<div id="primary" class="content-area">
-    <main id="main" class="site-main">
+<?php
+// Use theme's content wrapper structure
+$content_area_class = apply_filters( 'sc_events_content_area_class', 'content-area' );
+$site_main_class = apply_filters( 'sc_events_site_main_class', 'site-main' );
+?>
 
-        <header class="sc-events-archive__header">
-            <p class="sc-events-archive__sub-title"><?php _e( 'PRÓXIMOS', 'sc-events' ); ?></p>
-            <h1 class="sc-events-archive__title"><?php _e( 'Eventos', 'sc-events' ); ?></h1>
+<div id="primary" class="<?php echo esc_attr( $content_area_class ); ?>">
+    <main id="main" class="<?php echo esc_attr( $site_main_class ); ?>">
+
+        <header class="page-header entry-header">
+            <p class="page-subtitle"><?php _e( 'PRÓXIMOS', 'sc-events' ); ?></p>
+            <h1 class="page-title entry-title"><?php _e( 'Eventos', 'sc-events' ); ?></h1>
         </header>
 
-        <?php if ( $upcoming_events->have_posts() ) : ?>
-            
-            <div class="<?php echo esc_attr( $grid_classes ); ?>">
-                
-                <?php while ( $upcoming_events->have_posts() ) : $upcoming_events->the_post();
-                    $start_date = get_post_meta( get_the_ID(), '_event_start_date_time', true );
-                    $date_parts = \SCEvents\Core\Helpers::get_formatted_date( $start_date );
-                    $categories = get_the_terms( get_the_ID(), 'event_category' );
-                    ?>
+        <div class="page-content entry-content">
 
-                    <a href="<?php the_permalink(); ?>" class="sc-events-card">
-                        <div class="sc-events-card__inner">
-                            <?php if ( $date_parts ) : ?>
-                                <div class="sc-events-card__date">
-                                    <span class="sc-events-card__day"><?php echo esc_html( $date_parts['day'] ); ?></span>
-                                    <span class="sc-events-card__month"><?php echo esc_html( $date_parts['month'] ); ?></span>
+            <?php if ( $upcoming_events->have_posts() ) : ?>
+                
+                <div class="<?php echo esc_attr( $grid_classes ); ?> sc-events-grid">
+                    
+                    <?php while ( $upcoming_events->have_posts() ) : $upcoming_events->the_post();
+                        $start_date = get_post_meta( get_the_ID(), '_event_start_date_time', true );
+                        $date_parts = \SCEvents\Core\Helpers::get_formatted_date( $start_date );
+                        $categories = get_the_terms( get_the_ID(), 'event_category' );
+                        ?>
+
+                        <article class="post event-post">
+                            <a href="<?php the_permalink(); ?>" class="sc-events-card">
+                                <div class="sc-events-card__inner">
+                                    <?php if ( $date_parts ) : ?>
+                                        <div class="sc-events-card__date">
+                                            <span class="sc-events-card__day"><?php echo esc_html( $date_parts['day'] ); ?></span>
+                                            <span class="sc-events-card__month"><?php echo esc_html( $date_parts['month'] ); ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="sc-events-card__details">
+                                        <h2 class="sc-events-card__title entry-title"><?php the_title(); ?></h2>
+                                        <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
+                                            <p class="sc-events-card__category post-meta"><?php echo esc_html( $categories[0]->name ); ?></p>
+                                        <?php endif; ?>
+                                        <div class="sc-events-card__excerpt entry-summary">
+                                            <?php echo esc_html( \SCEvents\Core\Helpers::get_trimmed_excerpt( 80 ) ); ?>
+                                        </div>
+                                    </div>
                                 </div>
-                            <?php endif; ?>
-                            <div class="sc-events-card__details">
-                                <h2 class="sc-events-card__title"><?php the_title(); ?></h2>
-                                <?php if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) : ?>
-                                    <p class="sc-events-card__category"><?php echo esc_html( $categories[0]->name ); ?></p>
-                                <?php endif; ?>
-                                <div class="sc-events-card__excerpt">
-                                    <?php echo esc_html( \SCEvents\Core\Helpers::get_trimmed_excerpt( 80 ) ); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                <?php endwhile; ?>
-            </div>
-        <?php else : ?>
-            <p><?php _e( 'Não há eventos futuros agendados.', 'sc-events' ); ?></p>
-        <?php endif; ?>
+                            </a>
+                        </article>
+                    <?php endwhile; ?>
+                </div>
+            <?php else : ?>
+                <p class="no-events-message"><?php _e( 'Não há eventos futuros agendados.', 'sc-events' ); ?></p>
+            <?php endif; ?>
+            
+            <?php wp_reset_postdata(); ?>
         
-        <?php wp_reset_postdata(); ?>
+        </div><!-- .page-content -->
     </main>
 </div>
 <?php get_footer();

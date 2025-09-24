@@ -228,7 +228,7 @@ class Settings {
             <?php endforeach; ?>
         </fieldset>
         <p class="description">
-            <?php _e( 'Escolha o estilo do botão "Adicionar ao calendário". Os estilos personalizados têm designs únicos, enquanto "Theme Integration" adapta-se aos botões do seu tema.', 'sc-events' ); ?>
+            <?php _e( 'Escolha o estilo do botão "Adicionar ao calendário". "Theme Integration" adapta-se aos botões do seu tema.', 'sc-events' ); ?>
         </p>
         <?php
     }

@@ -40,6 +40,9 @@ final class Plugin {
         
         // Handle ICS download requests
         add_action( 'init', [ $this, 'handle_ics_download' ] );
+        
+        // Add body classes for button styling
+        add_filter( 'body_class', [ $this, 'add_calendar_button_body_class' ] );
     }
     
     /**
@@ -52,6 +55,18 @@ final class Plugin {
                 ICSGenerator::serve_ics_download( $event_id );
             }
         }
+    }
+    
+    /**
+     * Add body class for calendar button styling.
+     */
+    public function add_calendar_button_body_class( $classes ) {
+        $options = get_option( 'sc_events_options' );
+        $button_style = isset( $options['calendar_button_style'] ) ? $options['calendar_button_style'] : 'plugin';
+        
+        $classes[] = 'sc-events-btn-' . $button_style;
+        
+        return $classes;
     }
     
     public static function activate() {

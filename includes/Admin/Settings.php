@@ -66,6 +66,14 @@ class Settings {
         );
         
         add_settings_field(
+            'calendar_button_style',
+            __( 'Calendar Button Style', 'sc-events' ),
+            [ $this, 'render_field_calendar_button_style' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
             'custom_css',
             __( 'Custom CSS', 'sc-events' ),
             [ $this, 'render_field_custom_css' ],
@@ -103,6 +111,13 @@ class Settings {
             <pre>.sc-events-single__title { font-size: 48px; color: #2c3e50; }</pre>
             <pre>.sc-events-single__detail-title { background: #2ecc71; color: #fff; }</pre>
             <pre>.sc-events-single__detail-item p { background: #eaf2f8; }</pre>
+            <hr>
+            <h3><?php _e( 'Botão de Calendário (Download ICS)', 'sc-events' ); ?></h3>
+            <p><?php _e( 'O botão "Adicionar ao calendário" adapta-se automaticamente ao tema, mas pode personalizá-lo:', 'sc-events' ); ?></p>
+            <pre>.sc-events-calendar-btn { background: #e74c3c; color: #fff; }</pre>
+            <pre>.sc-events-calendar-btn:hover { background: #c0392b; }</pre>
+            <pre>.sc-events-calendar-icon { font-size: 20px; }</pre>
+            <p><em><?php _e( 'Nota: O botão usa as classes do tema (wp-element-button, button, btn) para integração automática.', 'sc-events' ); ?></em></p>
         </div>
         <?php
     }
@@ -191,6 +206,27 @@ class Settings {
         <?php
     }
     
+    public function render_field_calendar_button_style() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['calendar_button_style'] ) ? $options['calendar_button_style'] : 'plugin';
+        ?>
+        <fieldset>
+            <legend class="screen-reader-text"><span><?php _e( 'Calendar Button Style', 'sc-events' ); ?></span></legend>
+            <label>
+                <input type="radio" name="sc_events_options[calendar_button_style]" value="plugin" <?php checked( $value, 'plugin' ); ?> />
+                <?php _e( 'Usar estilos do plugin (azul, com efeitos)', 'sc-events' ); ?>
+            </label><br>
+            <label>
+                <input type="radio" name="sc_events_options[calendar_button_style]" value="theme" <?php checked( $value, 'theme' ); ?> />
+                <?php _e( 'Usar estilos do tema (integra-se com botões do site)', 'sc-events' ); ?>
+            </label>
+        </fieldset>
+        <p class="description">
+            <?php _e( 'Escolha se o botão "Adicionar ao calendário" deve usar os estilos padrão do plugin ou integrar-se com os botões do seu tema.', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
     public function render_field_custom_css( $args ) {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
@@ -205,6 +241,7 @@ class Settings {
     public function sanitize_options( $input ) {
         $new_input = [];
         $new_input['disable_archive_hover'] = isset( $input['disable_archive_hover'] ) ? 1 : 0;
+        $new_input['calendar_button_style'] = isset( $input['calendar_button_style'] ) && in_array( $input['calendar_button_style'], [ 'plugin', 'theme' ] ) ? $input['calendar_button_style'] : 'plugin';
         $new_input['custom_css'] = isset( $input['custom_css'] ) ? wp_kses( $input['custom_css'], [] ) : '';
         return $new_input;
     }

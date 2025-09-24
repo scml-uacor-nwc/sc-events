@@ -1,9 +1,9 @@
 === SC Events ===
 Contributors: Pedro Matias
-Tags: events, event management, shortcode, custom post type, calendar, agenda
+Tags: events, event management, shortcode, custom post type, calendar, agenda, ics, download
 Requires at least: 5.8
 Tested up to: 6.5
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -24,11 +24,13 @@ PLUGIN SC EVENTS: GUIA DO UTILIZADOR
 
 1. Instalação e Primeiros Passos
 2. Criar e Gerir Eventos
-3. Exibir Eventos com Shortcodes
+3. Página de Agenda Automática
+4. Download de Calendário (ICS)
+5. Exibir Eventos com Shortcodes
    - Utilização Básica
    - Atributos do Shortcode
-4. Personalizar Estilos com CSS
-5. Integração com Page Builders (Avada & Elementor)
+6. Personalizar Estilos com CSS
+7. Integração com Page Builders (Avada & Elementor)
    - Como Usar com o Avada
    - Como Usar com o Elementor
 
@@ -49,7 +51,7 @@ Para Instalar o Plugin:
 Depois de ativar o plugin, tem de atualizar as ligações permanentes do seu site.
 1. Vá a Definições > Ligações Permanentes.
 2. Não precisa de alterar nenhuma definição. Apenas clique no botão "Guardar Alterações".
-3. Este passo garante que a sua página principal de eventos em `oseusite.com/events` irá funcionar corretamente.
+3. Este passo garante que a sua página de agenda em `oseusite.com/agenda` irá funcionar corretamente.
 
 
 2. CRIAR E GERIR EVENTOS
@@ -76,7 +78,44 @@ Para Criar um Novo Evento:
 7. Clique em "Publicar" para guardar o seu evento.
 
 
-3. EXIBIR EVENTOS COM SHORTCODES
+3. PÁGINA DE AGENDA AUTOMÁTICA
+-------------------------------
+
+O plugin cria automaticamente uma página de agenda acessível em `oseusite.com/agenda`.
+
+Esta página mostra todos os próximos eventos numa grelha organizada e adapta-se automaticamente ao design do seu tema WordPress.
+
+Os visitantes podem:
+- Ver todos os eventos futuros organizados por data
+- Clicar em qualquer evento para ver os detalhes completos
+- A página integra-se perfeitamente com o visual do seu site
+
+Não é necessária configuração adicional - a página está pronta a usar assim que o plugin é ativado.
+
+
+4. DOWNLOAD DE CALENDÁRIO (ICS)
+-------------------------------
+
+Nas páginas de eventos individuais, os visitantes encontram um botão "Adicionar ao calendário" que permite descarregar o evento em formato ICS.
+
+Este ficheiro pode ser importado em:
+- Google Calendar
+- Outlook (desktop e web)
+- Apple Calendar (Mac/iPhone)
+- Thunderbird
+- Qualquer aplicação de calendário que suporte o formato ICS
+
+O botão adapta-se automaticamente ao design do seu tema WordPress, mas pode ser personalizado através da secção "Custom CSS" nas definições do plugin.
+
+Informações incluídas no ficheiro ICS:
+- Nome do evento
+- Data e hora de início e fim
+- Localização do evento
+- Descrição completa
+- Link para a página do evento no seu site
+
+
+5. EXIBIR EVENTOS COM SHORTCODES
 ---------------------------------
 
 A funcionalidade mais poderosa deste plugin é o shortcode `[sc_events]`, que lhe permite colocar uma grelha de cartões de eventos em qualquer parte do seu site.
@@ -123,7 +162,7 @@ Exemplo: Mostrar os próximos 4 eventos da categoria "webinars" numa grelha de 2
 [sc_events limit="4" columns="2" category="webinars" hover="false"]
 
 
-4. PERSONALIZAR ESTILOS COM CSS
+6. PERSONALIZAR ESTILOS COM CSS
 --------------------------------
 
 Se quiser fazer pequenos ajustes de estilo (como alterar cores ou tamanhos de fonte) para corresponder ao seu tema, pode facilmente adicionar as suas próprias regras de CSS.
@@ -132,11 +171,17 @@ Se quiser fazer pequenos ajustes de estilo (como alterar cores ou tamanhos de fo
 2. Insira as suas regras de CSS na caixa de texto.
 3. Clique em "Guardar Alterações".
 
-Exemplo: Para alterar a cor da caixa preta da data para azul, pode adicionar:
+Exemplos de personalização:
+
+Para alterar a cor da caixa preta da data para azul:
 .sc-events-card__date { background-color: #0073aa; }
 
+Para personalizar o botão de download de calendário:
+.sc-events-calendar-btn { background: #e74c3c; color: #fff; }
+.sc-events-calendar-btn:hover { background: #c0392b; }
 
-5. INTEGRAÇÃO COM PAGE BUILDERS (AVADA & ELEMENTOR)
+
+7. INTEGRAÇÃO COM PAGE BUILDERS (AVADA & ELEMENTOR)
 ------------------------------------------------------
 
 Este plugin foi construído para ser compatível com page builders. A chave é usar os shortcodes.

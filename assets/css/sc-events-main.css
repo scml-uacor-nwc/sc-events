@@ -244,21 +244,53 @@
   text-decoration: underline;
 }
 
-/* Calendar Download Button - Theme Integration */
+/* Calendar Download Button Container */
 .sc-events-single__calendar-download {
   text-align: center;
   margin: 3rem 0 2rem 0;
 }
 
+/* Base Calendar Button Styles */
 .sc-events-calendar-btn {
-  /* Theme-friendly base styles */
   display: inline-flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+}
+
+.sc-events-calendar-icon {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+/* Plugin Default Styles (when calendar_button_style = 'plugin') */
+body.sc-events-btn-plugin .sc-events-calendar-btn {
+  background: #007cba;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  min-height: 44px;
+  line-height: 1.4;
+}
+
+body.sc-events-btn-plugin .sc-events-calendar-btn:hover {
+  background: #005a87;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+body.sc-events-btn-plugin .sc-events-calendar-btn:active {
+  transform: translateY(0);
+}
+
+/* Theme Integration Styles (when calendar_button_style = 'theme') */
+body.sc-events-btn-theme .sc-events-calendar-btn {
   /* Try to inherit theme button styles */
   background: var(--wp--preset--color--primary, var(--button-background, #0073aa));
   color: var(--wp--preset--color--background, var(--button-color, #fff));
@@ -268,16 +300,14 @@
   font-size: var(--wp--preset--font-size--medium, 1rem);
   font-weight: var(--button-font-weight, 500);
   font-family: inherit;
-  
-  /* Fallback styles if theme doesn't provide button styles */
   min-height: 44px;
   line-height: 1.4;
 }
 
-/* Inherit theme button classes if available */
-.sc-events-calendar-btn.wp-element-button,
-.sc-events-calendar-btn.button,
-.sc-events-calendar-btn.btn {
+/* Inherit theme button classes when using theme style */
+body.sc-events-btn-theme .sc-events-calendar-btn.wp-element-button,
+body.sc-events-btn-theme .sc-events-calendar-btn.button,
+body.sc-events-btn-theme .sc-events-calendar-btn.btn {
   all: inherit;
   display: inline-flex;
   align-items: center;
@@ -285,7 +315,7 @@
   text-decoration: none;
 }
 
-.sc-events-calendar-btn:hover {
+body.sc-events-btn-theme .sc-events-calendar-btn:hover {
   color: var(--wp--preset--color--background, var(--button-hover-color, #fff));
   background: var(--wp--preset--color--secondary, var(--button-hover-background, #005a87));
   text-decoration: none;
@@ -293,13 +323,8 @@
   opacity: 0.9;
 }
 
-.sc-events-calendar-btn:active {
+body.sc-events-btn-theme .sc-events-calendar-btn:active {
   transform: translateY(0);
-}
-
-.sc-events-calendar-icon {
-  font-size: 1.1em;
-  line-height: 1;
 }
 
 /*# sourceMappingURL=sc-events-main.css.map */

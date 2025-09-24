@@ -84,7 +84,13 @@ if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($en
             'event_id' => get_the_ID()
         ), home_url() );
         ?>
-        <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn wp-element-button button btn" download>
+        <?php
+        // Get button style preference
+        $sc_events_options = get_option( 'sc_events_options' );
+        $button_style = isset( $sc_events_options['calendar_button_style'] ) ? $sc_events_options['calendar_button_style'] : 'plugin';
+        $theme_classes = ( $button_style === 'theme' ) ? ' wp-element-button button btn' : '';
+        ?>
+        <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn<?php echo esc_attr( $theme_classes ); ?>" download>
             <span class="sc-events-calendar-icon">📅</span>
             <?php _e( 'Adicionar ao calendário', 'sc-events' ); ?>
         </a>

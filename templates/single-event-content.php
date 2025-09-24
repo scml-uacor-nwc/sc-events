@@ -27,7 +27,7 @@ if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($en
     
     <div class="sc-events-single__breadcrumbs">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php _e('Início', 'sc-events'); ?></a> | 
-        <a href="<?php echo esc_url( get_post_type_archive_link( 'event' ) ); ?>"><?php _e('Agenda', 'sc-events'); ?></a> | 
+        <a href="<?php echo esc_url( home_url( '/agenda/' ) ); ?>"><?php _e('Agenda', 'sc-events'); ?></a> | 
         <span class="current"><?php the_title(); ?></span>
     </div>
 
@@ -75,6 +75,19 @@ if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($en
             <h3 class="sc-events-single__detail-title"><?php _e( 'Contactos', 'sc-events' ); ?></h3>
             <p><?php echo nl2br( esc_html( $contacts ) ); ?></p>
         </div>
+    </div>
+
+    <div class="sc-events-single__calendar-download">
+        <?php
+        $download_url = add_query_arg( array(
+            'sc_events_ics' => '1',
+            'event_id' => get_the_ID()
+        ), home_url() );
+        ?>
+        <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn" download>
+            <span class="sc-events-calendar-icon">📅</span>
+            <?php _e( 'Adicionar ao calendário', 'sc-events' ); ?>
+        </a>
     </div>
 
 </article>

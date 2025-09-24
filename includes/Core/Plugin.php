@@ -37,6 +37,21 @@ final class Plugin {
         new Assets\Enqueue();
         new Frontend\Templates();
         new Frontend\Shortcodes();
+        
+        // Handle ICS download requests
+        add_action( 'init', [ $this, 'handle_ics_download' ] );
+    }
+    
+    /**
+     * Handle ICS file download requests.
+     */
+    public function handle_ics_download() {
+        if ( isset( $_GET['sc_events_ics'] ) && isset( $_GET['event_id'] ) ) {
+            $event_id = intval( $_GET['event_id'] );
+            if ( $event_id && get_post_type( $event_id ) === 'event' ) {
+                ICSGenerator::serve_ics_download( $event_id );
+            }
+        }
     }
     
     public static function activate() {

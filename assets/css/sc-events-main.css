@@ -244,4 +244,42 @@
   text-decoration: underline;
 }
 
+/* Calendar Download Button */
+.sc-events-single__calendar-download {
+  text-align: center;
+  margin: 3rem 0 2rem 0;
+}
+
+.sc-events-calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #007cba;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.sc-events-calendar-btn:hover {
+  background: #005a87;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.sc-events-calendar-btn:active {
+  transform: translateY(0);
+}
+
+.sc-events-calendar-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
 /*# sourceMappingURL=sc-events-main.css.map */

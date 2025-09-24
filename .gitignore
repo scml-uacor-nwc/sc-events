@@ -17,6 +17,7 @@ yarn-error.log*
 
 # Build artifacts and compiled files
 *.zip
+!The\ Executable/*.zip
 build/
 dist/
 

@@ -208,21 +208,27 @@ class Settings {
     
     public function render_field_calendar_button_style() {
         $options = get_option( 'sc_events_options' );
-        $value   = isset( $options['calendar_button_style'] ) ? $options['calendar_button_style'] : 'plugin';
+        $value   = isset( $options['calendar_button_style'] ) ? $options['calendar_button_style'] : 'default-blue';
+        
+        $button_styles = [
+            'default-blue' => __( 'Default Blue', 'sc-events' ),
+            'default-bw' => __( 'Default B&W', 'sc-events' ),
+            'black-yellow' => __( 'Black & Yellow', 'sc-events' ),
+            'white-yellow' => __( 'White & Yellow', 'sc-events' ),
+            'theme' => __( 'Theme Integration - Integra-se com botões do tema', 'sc-events' )
+        ];
         ?>
         <fieldset>
             <legend class="screen-reader-text"><span><?php _e( 'Calendar Button Style', 'sc-events' ); ?></span></legend>
-            <label>
-                <input type="radio" name="sc_events_options[calendar_button_style]" value="plugin" <?php checked( $value, 'plugin' ); ?> />
-                <?php _e( 'Usar estilos do plugin (azul, com efeitos)', 'sc-events' ); ?>
-            </label><br>
-            <label>
-                <input type="radio" name="sc_events_options[calendar_button_style]" value="theme" <?php checked( $value, 'theme' ); ?> />
-                <?php _e( 'Usar estilos do tema (integra-se com botões do site)', 'sc-events' ); ?>
-            </label>
+            <?php foreach ( $button_styles as $style_value => $style_label ) : ?>
+                <label style="display: block; margin-bottom: 8px;">
+                    <input type="radio" name="sc_events_options[calendar_button_style]" value="<?php echo esc_attr( $style_value ); ?>" <?php checked( $value, $style_value ); ?> />
+                    <?php echo esc_html( $style_label ); ?>
+                </label>
+            <?php endforeach; ?>
         </fieldset>
         <p class="description">
-            <?php _e( 'Escolha se o botão "Adicionar ao calendário" deve usar os estilos padrão do plugin ou integrar-se com os botões do seu tema.', 'sc-events' ); ?>
+            <?php _e( 'Escolha o estilo do botão "Adicionar ao calendário". Os estilos personalizados têm designs únicos, enquanto "Theme Integration" adapta-se aos botões do seu tema.', 'sc-events' ); ?>
         </p>
         <?php
     }
@@ -239,9 +245,11 @@ class Settings {
     }
 
     public function sanitize_options( $input ) {
+        $allowed_button_styles = [ 'default-blue', 'default-bw', 'black-yellow', 'white-yellow', 'theme' ];
+        
         $new_input = [];
         $new_input['disable_archive_hover'] = isset( $input['disable_archive_hover'] ) ? 1 : 0;
-        $new_input['calendar_button_style'] = isset( $input['calendar_button_style'] ) && in_array( $input['calendar_button_style'], [ 'plugin', 'theme' ] ) ? $input['calendar_button_style'] : 'plugin';
+        $new_input['calendar_button_style'] = isset( $input['calendar_button_style'] ) && in_array( $input['calendar_button_style'], $allowed_button_styles ) ? $input['calendar_button_style'] : 'default-blue';
         $new_input['custom_css'] = isset( $input['custom_css'] ) ? wp_kses( $input['custom_css'], [] ) : '';
         return $new_input;
     }

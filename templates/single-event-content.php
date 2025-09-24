@@ -87,7 +87,7 @@ if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($en
         <?php
         // Get button style preference
         $sc_events_options = get_option( 'sc_events_options' );
-        $button_style = isset( $sc_events_options['calendar_button_style'] ) ? $sc_events_options['calendar_button_style'] : 'plugin';
+        $button_style = isset( $sc_events_options['calendar_button_style'] ) ? $sc_events_options['calendar_button_style'] : 'default-blue';
         $theme_classes = ( $button_style === 'theme' ) ? ' wp-element-button button btn' : '';
         ?>
         <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn<?php echo esc_attr( $theme_classes ); ?>" download>

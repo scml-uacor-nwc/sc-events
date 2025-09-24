@@ -265,8 +265,8 @@
   line-height: 1;
 }
 
-/* Plugin Default Styles (when calendar_button_style = 'plugin') */
-body.sc-events-btn-plugin .sc-events-calendar-btn {
+/* Default Blue Style */
+body.sc-events-btn-default-blue .sc-events-calendar-btn {
   background: #007cba;
   color: #fff;
   padding: 12px 24px;
@@ -278,14 +278,92 @@ body.sc-events-btn-plugin .sc-events-calendar-btn {
   line-height: 1.4;
 }
 
-body.sc-events-btn-plugin .sc-events-calendar-btn:hover {
+body.sc-events-btn-default-blue .sc-events-calendar-btn:hover {
   background: #005a87;
   color: #fff;
   text-decoration: none;
   transform: translateY(-1px);
 }
 
-body.sc-events-btn-plugin .sc-events-calendar-btn:active {
+body.sc-events-btn-default-blue .sc-events-calendar-btn:active {
+  transform: translateY(0);
+}
+
+/* Default Black & White Style */
+body.sc-events-btn-default-bw .sc-events-calendar-btn {
+  background: #333;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  border: 2px solid #333;
+  min-height: 44px;
+  line-height: 1.4;
+}
+
+body.sc-events-btn-default-bw .sc-events-calendar-btn:hover {
+  background: #fff;
+  color: #333;
+  border-color: #333;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+body.sc-events-btn-default-bw .sc-events-calendar-btn:active {
+  transform: translateY(0);
+}
+
+/* Black & Yellow Style */
+body.sc-events-btn-black-yellow .sc-events-calendar-btn {
+  background: #000;
+  color: #ffc107;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  border: 2px solid #ffc107;
+  min-height: 44px;
+  line-height: 1.4;
+}
+
+body.sc-events-btn-black-yellow .sc-events-calendar-btn:hover {
+  background: #ffc107;
+  color: #000;
+  border-color: #000;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+body.sc-events-btn-black-yellow .sc-events-calendar-btn:active {
+  transform: translateY(0);
+}
+
+/* White & Yellow Style */
+body.sc-events-btn-white-yellow .sc-events-calendar-btn {
+  background: #fff;
+  color: #333;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  border: 2px solid #ffc107;
+  min-height: 44px;
+  line-height: 1.4;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+body.sc-events-btn-white-yellow .sc-events-calendar-btn:hover {
+  background: #ffc107;
+  color: #333;
+  border-color: #ffc107;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
+}
+
+body.sc-events-btn-white-yellow .sc-events-calendar-btn:active {
   transform: translateY(0);
 }
 

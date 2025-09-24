@@ -84,7 +84,7 @@ if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($en
             'event_id' => get_the_ID()
         ), home_url() );
         ?>
-        <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn" download>
+        <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn wp-element-button button btn" download>
             <span class="sc-events-calendar-icon">📅</span>
             <?php _e( 'Adicionar ao calendário', 'sc-events' ); ?>
         </a>

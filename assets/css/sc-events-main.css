@@ -244,33 +244,53 @@
   text-decoration: underline;
 }
 
-/* Calendar Download Button */
+/* Calendar Download Button - Theme Integration */
 .sc-events-single__calendar-download {
   text-align: center;
   margin: 3rem 0 2rem 0;
 }
 
 .sc-events-calendar-btn {
+  /* Theme-friendly base styles */
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #007cba;
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 6px;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  
+  /* Try to inherit theme button styles */
+  background: var(--wp--preset--color--primary, var(--button-background, #0073aa));
+  color: var(--wp--preset--color--background, var(--button-color, #fff));
+  padding: var(--wp--preset--spacing--30, 12px) var(--wp--preset--spacing--40, 24px);
+  border-radius: var(--wp--custom--border-radius, var(--button-border-radius, 4px));
+  border: var(--button-border, none);
+  font-size: var(--wp--preset--font-size--medium, 1rem);
+  font-weight: var(--button-font-weight, 500);
+  font-family: inherit;
+  
+  /* Fallback styles if theme doesn't provide button styles */
+  min-height: 44px;
+  line-height: 1.4;
+}
+
+/* Inherit theme button classes if available */
+.sc-events-calendar-btn.wp-element-button,
+.sc-events-calendar-btn.button,
+.sc-events-calendar-btn.btn {
+  all: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
 }
 
 .sc-events-calendar-btn:hover {
-  background: #005a87;
-  color: #fff;
+  color: var(--wp--preset--color--background, var(--button-hover-color, #fff));
+  background: var(--wp--preset--color--secondary, var(--button-hover-background, #005a87));
   text-decoration: none;
   transform: translateY(-1px);
+  opacity: 0.9;
 }
 
 .sc-events-calendar-btn:active {
@@ -278,7 +298,7 @@
 }
 
 .sc-events-calendar-icon {
-  font-size: 18px;
+  font-size: 1.1em;
   line-height: 1;
 }
 

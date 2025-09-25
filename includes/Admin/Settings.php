@@ -269,7 +269,7 @@ class Settings {
             <?php _e( 'Mostrar ícone 📅 no botão de calendário', 'sc-events' ); ?>
         </label>
         <p class="description">
-            <?php _e( 'Desmarque para ocultar o ícone do calendários.', 'sc-events' ); ?>
+            <?php _e( 'Desmarque para ocultar o ícone do calendário.', 'sc-events' ); ?>
         </p>
         <?php
     }

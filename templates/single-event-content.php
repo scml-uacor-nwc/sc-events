@@ -85,13 +85,25 @@ if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($en
         ), home_url() );
         ?>
         <?php
-        // Get button style preference
+        // Get button style preference and custom settings
         $sc_events_options = get_option( 'sc_events_options' );
         $button_style = isset( $sc_events_options['calendar_button_style'] ) ? $sc_events_options['calendar_button_style'] : 'default-blue';
-        $theme_classes = ( $button_style === 'theme' ) ? ' wp-element-button button btn' : '';
+        $custom_classes = isset( $sc_events_options['calendar_button_classes'] ) ? $sc_events_options['calendar_button_classes'] : '';
+        $show_icon = isset( $sc_events_options['calendar_button_show_icon'] ) ? $sc_events_options['calendar_button_show_icon'] : 1;
+        
+        // Build classes string
+        $classes = 'sc-events-calendar-btn';
+        if ( $button_style === 'theme' ) {
+            $classes .= ' wp-element-button button btn';
+        }
+        if ( ! empty( $custom_classes ) ) {
+            $classes .= ' ' . $custom_classes;
+        }
         ?>
-        <a href="<?php echo esc_url( $download_url ); ?>" class="sc-events-calendar-btn<?php echo esc_attr( $theme_classes ); ?>" download>
-            <span class="sc-events-calendar-icon">📅</span>
+        <a href="<?php echo esc_url( $download_url ); ?>" class="<?php echo esc_attr( $classes ); ?>" download>
+            <?php if ( $show_icon ) : ?>
+                <span class="sc-events-calendar-icon">📅</span>
+            <?php endif; ?>
             <?php _e( 'Adicionar ao calendário', 'sc-events' ); ?>
         </a>
     </div>

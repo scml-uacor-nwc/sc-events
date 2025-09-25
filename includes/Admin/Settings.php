@@ -74,6 +74,22 @@ class Settings {
         );
         
         add_settings_field(
+            'calendar_button_classes',
+            __( 'Calendar Button CSS Classes', 'sc-events' ),
+            [ $this, 'render_field_calendar_button_classes' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
+            'calendar_button_show_icon',
+            __( 'Calendar Button Icon', 'sc-events' ),
+            [ $this, 'render_field_calendar_button_show_icon' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
             'custom_css',
             __( 'Custom CSS', 'sc-events' ),
             [ $this, 'render_field_custom_css' ],
@@ -233,6 +249,31 @@ class Settings {
         <?php
     }
     
+    public function render_field_calendar_button_classes() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['calendar_button_classes'] ) ? $options['calendar_button_classes'] : '';
+        ?>
+        <input type="text" name="sc_events_options[calendar_button_classes]" value="<?php echo esc_attr( $value ); ?>" style="width: 100%; max-width: 400px;" placeholder="btn btn-primary custom-class" />
+        <p class="description">
+            <?php _e( 'Adicione classes CSS personalizadas para o botão "Adicionar ao calendário" (separadas por espaços). Exemplo: btn btn-primary custom-style', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
+    public function render_field_calendar_button_show_icon() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['calendar_button_show_icon'] ) ? $options['calendar_button_show_icon'] : 1;
+        ?>
+        <label for="sc_events_calendar_button_show_icon">
+            <input type="checkbox" id="sc_events_calendar_button_show_icon" name="sc_events_options[calendar_button_show_icon]" value="1" <?php checked( $value, 1 ); ?> />
+            <?php _e( 'Mostrar ícone 📅 no botão de calendário', 'sc-events' ); ?>
+        </label>
+        <p class="description">
+            <?php _e( 'Desmarque para ocultar o ícone do calendário e mostrar apenas o texto.', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
     public function render_field_custom_css( $args ) {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
@@ -250,6 +291,8 @@ class Settings {
         $new_input = [];
         $new_input['disable_archive_hover'] = isset( $input['disable_archive_hover'] ) ? 1 : 0;
         $new_input['calendar_button_style'] = isset( $input['calendar_button_style'] ) && in_array( $input['calendar_button_style'], $allowed_button_styles ) ? $input['calendar_button_style'] : 'default-blue';
+        $new_input['calendar_button_classes'] = isset( $input['calendar_button_classes'] ) ? sanitize_text_field( $input['calendar_button_classes'] ) : '';
+        $new_input['calendar_button_show_icon'] = isset( $input['calendar_button_show_icon'] ) ? 1 : 0;
         $new_input['custom_css'] = isset( $input['custom_css'] ) ? wp_kses( $input['custom_css'], [] ) : '';
         return $new_input;
     }

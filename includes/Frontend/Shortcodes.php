@@ -140,6 +140,7 @@ class Shortcodes {
                 $agenda_button_style = isset( $sc_events_options['agenda_button_style'] ) ? $sc_events_options['agenda_button_style'] : 'default-blue';
                 $agenda_button_classes = isset( $sc_events_options['agenda_button_classes'] ) ? $sc_events_options['agenda_button_classes'] : '';
                 $agenda_button_alignment = isset( $sc_events_options['agenda_button_alignment'] ) ? $sc_events_options['agenda_button_alignment'] : 'center';
+                $agenda_button_text = isset( $sc_events_options['agenda_button_text'] ) ? $sc_events_options['agenda_button_text'] : 'Ver agenda completa';
                 
                 $button_class = 'sc-events-agenda-btn';
                 if ( $agenda_button_style === 'theme' ) {
@@ -153,7 +154,7 @@ class Shortcodes {
                 ?>
                 <div class="<?php echo esc_attr( $container_class ); ?>">
                     <a href="/agenda" class="<?php echo esc_attr( $button_class ); ?>" data-style="<?php echo esc_attr( $agenda_button_style ); ?>">
-                        <?php _e( 'Ver agenda completa', 'sc-events' ); ?>
+                        <?php echo esc_html( $agenda_button_text ); ?>
                     </a>
                 </div>
                 <?php

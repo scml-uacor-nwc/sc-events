@@ -32,6 +32,63 @@ class Settings {
         ?>
         <div class="wrap">
             <h1><?php _e( 'SC Events: Custom Settings', 'sc-events' ); ?></h1>
+            <style>
+                .sc-events-settings-group {
+                    background: #f8f9fa;
+                    border: 1px solid #e1e5e9;
+                    border-radius: 8px;
+                    padding: 20px;
+                    margin: 20px 0;
+                }
+                .sc-events-settings-group h3 {
+                    margin-top: 0;
+                    color: #2c3e50;
+                    border-bottom: 2px solid #3498db;
+                    padding-bottom: 8px;
+                    display: flex;
+                    align-items: center;
+                }
+                .sc-events-settings-group h3:before {
+                    content: "⚙️";
+                    margin-right: 8px;
+                    font-size: 18px;
+                }
+                .sc-events-calendar-group h3:before {
+                    content: "📅";
+                }
+                .sc-events-agenda-group h3:before {
+                    content: "📋";
+                }
+                .sc-events-general-group h3:before {
+                    content: "🎛️";
+                }
+                .sc-events-css-group h3:before {
+                    content: "🎨";
+                }
+                .sc-events-help-group h3:before {
+                    content: "❓";
+                }
+                .sc-events-calendar-group {
+                    background: #e8f5e8;
+                    border-color: #28a745;
+                }
+                .sc-events-agenda-group {
+                    background: #e7f3ff;
+                    border-color: #007bff;
+                }
+                .sc-events-general-group {
+                    background: #fff3e0;
+                    border-color: #fd7e14;
+                }
+                .sc-events-css-group {
+                    background: #f3e5f5;
+                    border-color: #6f42c1;
+                }
+                .sc-events-help-group {
+                    background: #f8f9fa;
+                    border-color: #6c757d;
+                }
+            </style>
             <form method="post" action="options.php">
                 <?php
                     settings_fields( 'sc_events_settings_group' );
@@ -73,21 +130,6 @@ class Settings {
             'sc_events_settings_section'
         );
         
-        add_settings_field(
-            'calendar_button_classes',
-            __( 'Calendar Button CSS Classes', 'sc-events' ),
-            [ $this, 'render_field_calendar_button_classes' ],
-            'sc_events_settings_section',
-            'sc_events_settings_section'
-        );
-        
-        add_settings_field(
-            'calendar_button_show_icon',
-            __( 'Calendar Button Icon', 'sc-events' ),
-            [ $this, 'render_field_calendar_button_show_icon' ],
-            'sc_events_settings_section',
-            'sc_events_settings_section'
-        );
         
         add_settings_field(
             'show_agenda_button',
@@ -97,29 +139,6 @@ class Settings {
             'sc_events_settings_section'
         );
         
-        add_settings_field(
-            'agenda_button_style',
-            __( 'Agenda Button Style', 'sc-events' ),
-            [ $this, 'render_field_agenda_button_style' ],
-            'sc_events_settings_section',
-            'sc_events_settings_section'
-        );
-        
-        add_settings_field(
-            'agenda_button_classes',
-            __( 'Agenda Button CSS Classes', 'sc-events' ),
-            [ $this, 'render_field_agenda_button_classes' ],
-            'sc_events_settings_section',
-            'sc_events_settings_section'
-        );
-        
-        add_settings_field(
-            'agenda_button_alignment',
-            __( 'Agenda Button Alignment', 'sc-events' ),
-            [ $this, 'render_field_agenda_button_alignment' ],
-            'sc_events_settings_section',
-            'sc_events_settings_section'
-        );
         
         add_settings_field(
             'custom_css',
@@ -171,7 +190,10 @@ class Settings {
     }
 
     public function render_shortcode_instructions() {
-        
+        ?>
+        <div class="sc-events-settings-group sc-events-help-group">
+            <h3><?php _e( 'Instruções de Uso', 'sc-events' ); ?></h3>
+        <?php
         ?>
         <div class="sc-events-shortcode-instructions" style="background: #f6f7f7; padding: 1px 20px; border: 1px solid #ddd; margin-top: 10px;">
             <h2><?php _e( 'Instruções do Shortcode', 'sc-events' ); ?></h2>
@@ -240,6 +262,7 @@ class Settings {
                 </li>
             </ul>
         </div>
+        </div>
         <?php
     }
 
@@ -247,10 +270,13 @@ class Settings {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['disable_archive_hover'] ) ? $options['disable_archive_hover'] : 0;
         ?>
-        <label for="sc_events_disable_archive_hover">
-            <input type="checkbox" id="sc_events_disable_archive_hover" name="sc_events_options[disable_archive_hover]" value="1" <?php checked( $value, 1 ); ?> />
-            <?php _e( 'Desactiva o efeito hover em TODOS os cartões de eventos.', 'sc-events' ); ?>
-        </label>
+        <div class="sc-events-settings-group sc-events-general-group">
+            <h3><?php _e( 'Definições Gerais', 'sc-events' ); ?></h3>
+            <label for="sc_events_disable_archive_hover">
+                <input type="checkbox" id="sc_events_disable_archive_hover" name="sc_events_options[disable_archive_hover]" value="1" <?php checked( $value, 1 ); ?> />
+                <?php _e( 'Desactiva o efeito hover em TODOS os cartões de eventos.', 'sc-events' ); ?>
+            </label>
+        </div>
         <?php
     }
     
@@ -266,132 +292,144 @@ class Settings {
             'theme' => __( 'Theme Integration - Integra-se com botões do tema', 'sc-events' )
         ];
         ?>
-        <fieldset>
-            <legend class="screen-reader-text"><span><?php _e( 'Calendar Button Style', 'sc-events' ); ?></span></legend>
-            <?php foreach ( $button_styles as $style_value => $style_label ) : ?>
-                <label style="display: block; margin-bottom: 8px;">
-                    <input type="radio" name="sc_events_options[calendar_button_style]" value="<?php echo esc_attr( $style_value ); ?>" <?php checked( $value, $style_value ); ?> />
-                    <?php echo esc_html( $style_label ); ?>
-                </label>
-            <?php endforeach; ?>
-        </fieldset>
-        <p class="description">
-            <?php _e( 'Escolha o estilo do botão "Adicionar ao calendário". "Theme Integration" adapta-se aos botões do seu tema.', 'sc-events' ); ?>
-        </p>
+        <div class="sc-events-settings-group sc-events-calendar-group">
+            <h3><?php _e( 'Botão de Calendário (ICS)', 'sc-events' ); ?></h3>
+            <p><strong><?php _e( 'Estilo do Botão:', 'sc-events' ); ?></strong></p>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e( 'Calendar Button Style', 'sc-events' ); ?></span></legend>
+                <?php foreach ( $button_styles as $style_value => $style_label ) : ?>
+                    <label style="display: block; margin-bottom: 8px;">
+                        <input type="radio" name="sc_events_options[calendar_button_style]" value="<?php echo esc_attr( $style_value ); ?>" <?php checked( $value, $style_value ); ?> />
+                        <?php echo esc_html( $style_label ); ?>
+                    </label>
+                <?php endforeach; ?>
+            </fieldset>
+            <p class="description">
+                <?php _e( 'Escolha o estilo do botão "Adicionar ao calendário". "Theme Integration" tenta adaptar-se aos botões do tema.', 'sc-events' ); ?>
+            </p>
+            
+            <p><strong><?php _e( 'Classes CSS Personalizadas:', 'sc-events' ); ?></strong></p>
+            <?php
+            $calendar_classes_value = isset( $options['calendar_button_classes'] ) ? $options['calendar_button_classes'] : '';
+            ?>
+            <input type="text" name="sc_events_options[calendar_button_classes]" value="<?php echo esc_attr( $calendar_classes_value ); ?>" style="width: 100%; max-width: 400px;" placeholder="btn btn-primary custom-class" />
+            <p class="description">
+                <?php _e( 'Adicione classes CSS personalizadas para o botão "Adicionar ao calendário" (separadas por espaços). Exemplo: btn btn-primary custom-style', 'sc-events' ); ?>
+            </p>
+            
+            <p><strong><?php _e( 'Mostrar Ícone:', 'sc-events' ); ?></strong></p>
+            <?php
+            $calendar_icon_value = isset( $options['calendar_button_show_icon'] ) ? $options['calendar_button_show_icon'] : 1;
+            ?>
+            <label for="sc_events_calendar_button_show_icon">
+                <input type="checkbox" id="sc_events_calendar_button_show_icon" name="sc_events_options[calendar_button_show_icon]" value="1" <?php checked( $calendar_icon_value, 1 ); ?> />
+                <?php _e( 'Mostrar ícone 📅 no botão de calendário', 'sc-events' ); ?>
+            </label>
+            <p class="description">
+                <?php _e( 'Desmarque para ocultar o ícone do calendário.', 'sc-events' ); ?>
+            </p>
+        </div>
         <?php
     }
     
-    public function render_field_calendar_button_classes() {
-        $options = get_option( 'sc_events_options' );
-        $value   = isset( $options['calendar_button_classes'] ) ? $options['calendar_button_classes'] : '';
-        ?>
-        <input type="text" name="sc_events_options[calendar_button_classes]" value="<?php echo esc_attr( $value ); ?>" style="width: 100%; max-width: 400px;" placeholder="btn btn-primary custom-class" />
-        <p class="description">
-            <?php _e( 'Adicione classes CSS personalizadas para o botão "Adicionar ao calendário" (separadas por espaços). Exemplo: btn btn-primary custom-style', 'sc-events' ); ?>
-        </p>
-        <?php
-    }
-    
-    public function render_field_calendar_button_show_icon() {
-        $options = get_option( 'sc_events_options' );
-        $value   = isset( $options['calendar_button_show_icon'] ) ? $options['calendar_button_show_icon'] : 1;
-        ?>
-        <label for="sc_events_calendar_button_show_icon">
-            <input type="checkbox" id="sc_events_calendar_button_show_icon" name="sc_events_options[calendar_button_show_icon]" value="1" <?php checked( $value, 1 ); ?> />
-            <?php _e( 'Mostrar ícone 📅 no botão de calendário', 'sc-events' ); ?>
-        </label>
-        <p class="description">
-            <?php _e( 'Desmarque para ocultar o ícone do calendário.', 'sc-events' ); ?>
-        </p>
-        <?php
-    }
     
     public function render_field_show_agenda_button() {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['show_agenda_button'] ) ? $options['show_agenda_button'] : 1;
         ?>
-        <label for="sc_events_show_agenda_button">
-            <input type="checkbox" id="sc_events_show_agenda_button" name="sc_events_options[show_agenda_button]" value="1" <?php checked( $value, 1 ); ?> />
-            <?php _e( 'Mostrar botão "Ver agenda completa" no shortcode [sc_events]', 'sc-events' ); ?>
-        </label>
-        <p class="description">
-            <?php _e( 'Exibe um botão centralizado sob a grelha de eventos que leva à página /agenda.', 'sc-events' ); ?>
-        </p>
+        <div class="sc-events-settings-group sc-events-agenda-group">
+            <h3><?php _e( 'Botão da Agenda', 'sc-events' ); ?></h3>
+            <p><strong><?php _e( 'Activar Botão:', 'sc-events' ); ?></strong></p>
+            <label for="sc_events_show_agenda_button">
+                <input type="checkbox" id="sc_events_show_agenda_button" name="sc_events_options[show_agenda_button]" value="1" <?php checked( $value, 1 ); ?> />
+                <?php _e( 'Mostrar botão "Ver agenda completa" no shortcode [sc_events]', 'sc-events' ); ?>
+            </label>
+            <p class="description">
+                <?php _e( 'Exibe um botão sob a grelha de eventos que leva à página /agenda.', 'sc-events' ); ?>
+            </p>
+            
+            <p><strong><?php _e( 'Texto do Botão:', 'sc-events' ); ?></strong></p>
+            <?php
+            $agenda_text_value = isset( $options['agenda_button_text'] ) ? $options['agenda_button_text'] : 'Ver agenda completa';
+            ?>
+            <input type="text" name="sc_events_options[agenda_button_text]" value="<?php echo esc_attr( $agenda_text_value ); ?>" style="width: 100%; max-width: 400px;" placeholder="Ver agenda completa" />
+            <p class="description">
+                <?php _e( 'Texto que aparece no botão da agenda. Por defeito: "Ver agenda completa"', 'sc-events' ); ?>
+            </p>
+            
+            <p><strong><?php _e( 'Estilo do Botão:', 'sc-events' ); ?></strong></p>
+            <?php
+            $agenda_style_value = isset( $options['agenda_button_style'] ) ? $options['agenda_button_style'] : 'default-blue';
+            $button_styles = [
+                'default-blue' => __( 'Default Blue', 'sc-events' ),
+                'default-bw' => __( 'Default B&W', 'sc-events' ),
+                'black-yellow' => __( 'Black & Yellow', 'sc-events' ),
+                'white-yellow' => __( 'White & Yellow', 'sc-events' ),
+                'theme' => __( 'Theme Integration - Integra-se com botões do tema', 'sc-events' )
+            ];
+            ?>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e( 'Agenda Button Style', 'sc-events' ); ?></span></legend>
+                <?php foreach ( $button_styles as $style_value => $style_label ) : ?>
+                    <label style="display: block; margin-bottom: 8px;">
+                        <input type="radio" name="sc_events_options[agenda_button_style]" value="<?php echo esc_attr( $style_value ); ?>" <?php checked( $agenda_style_value, $style_value ); ?> />
+                        <?php echo esc_html( $style_label ); ?>
+                    </label>
+                <?php endforeach; ?>
+            </fieldset>
+            <p class="description">
+                <?php _e( 'Escolha o estilo do botão da agenda. "Theme Integration" tenta adaptar-se aos botões do tema.', 'sc-events' ); ?>
+            </p>
+            
+            <p><strong><?php _e( 'Classes CSS Personalizadas:', 'sc-events' ); ?></strong></p>
+            <?php
+            $agenda_classes_value = isset( $options['agenda_button_classes'] ) ? $options['agenda_button_classes'] : '';
+            ?>
+            <input type="text" name="sc_events_options[agenda_button_classes]" value="<?php echo esc_attr( $agenda_classes_value ); ?>" style="width: 100%; max-width: 400px;" placeholder="btn btn-primary custom-class" />
+            <p class="description">
+                <?php _e( 'Adicione classes CSS personalizadas para o botão da agenda (separadas por espaços). Exemplo: btn btn-primary custom-style', 'sc-events' ); ?>
+            </p>
+            
+            <p><strong><?php _e( 'Alinhamento do Botão:', 'sc-events' ); ?></strong></p>
+            <?php
+            $agenda_alignment_value = isset( $options['agenda_button_alignment'] ) ? $options['agenda_button_alignment'] : 'center';
+            $alignment_options = [
+                'left' => __( 'Esquerda', 'sc-events' ),
+                'center' => __( 'Centro', 'sc-events' ),
+                'right' => __( 'Direita', 'sc-events' )
+            ];
+            ?>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e( 'Agenda Button Alignment', 'sc-events' ); ?></span></legend>
+                <?php foreach ( $alignment_options as $alignment_value => $alignment_label ) : ?>
+                    <label style="display: block; margin-bottom: 8px;">
+                        <input type="radio" name="sc_events_options[agenda_button_alignment]" value="<?php echo esc_attr( $alignment_value ); ?>" <?php checked( $agenda_alignment_value, $alignment_value ); ?> />
+                        <?php echo esc_html( $alignment_label ); ?>
+                    </label>
+                <?php endforeach; ?>
+            </fieldset>
+            <p class="description">
+                <?php _e( 'Escolha o alinhamento do botão da agenda na página.', 'sc-events' ); ?>
+            </p>
+        </div>
         <?php
     }
     
-    public function render_field_agenda_button_style() {
-        $options = get_option( 'sc_events_options' );
-        $value   = isset( $options['agenda_button_style'] ) ? $options['agenda_button_style'] : 'default-blue';
-        
-        $button_styles = [
-            'default-blue' => __( 'Default Blue', 'sc-events' ),
-            'default-bw' => __( 'Default B&W', 'sc-events' ),
-            'black-yellow' => __( 'Black & Yellow', 'sc-events' ),
-            'white-yellow' => __( 'White & Yellow', 'sc-events' ),
-            'theme' => __( 'Theme Integration - Integra-se com botões do tema', 'sc-events' )
-        ];
-        ?>
-        <fieldset>
-            <legend class="screen-reader-text"><span><?php _e( 'Agenda Button Style', 'sc-events' ); ?></span></legend>
-            <?php foreach ( $button_styles as $style_value => $style_label ) : ?>
-                <label style="display: block; margin-bottom: 8px;">
-                    <input type="radio" name="sc_events_options[agenda_button_style]" value="<?php echo esc_attr( $style_value ); ?>" <?php checked( $value, $style_value ); ?> />
-                    <?php echo esc_html( $style_label ); ?>
-                </label>
-            <?php endforeach; ?>
-        </fieldset>
-        <p class="description">
-            <?php _e( 'Escolha o estilo do botão "Ver agenda completa". "Theme Integration" adapta-se aos botões do seu tema.', 'sc-events' ); ?>
-        </p>
-        <?php
-    }
-    
-    public function render_field_agenda_button_classes() {
-        $options = get_option( 'sc_events_options' );
-        $value   = isset( $options['agenda_button_classes'] ) ? $options['agenda_button_classes'] : '';
-        ?>
-        <input type="text" name="sc_events_options[agenda_button_classes]" value="<?php echo esc_attr( $value ); ?>" style="width: 100%; max-width: 400px;" placeholder="btn btn-primary custom-class" />
-        <p class="description">
-            <?php _e( 'Adicione classes CSS personalizadas para o botão "Ver agenda completa" (separadas por espaços). Exemplo: btn btn-primary custom-style', 'sc-events' ); ?>
-        </p>
-        <?php
-    }
-    
-    public function render_field_agenda_button_alignment() {
-        $options = get_option( 'sc_events_options' );
-        $value   = isset( $options['agenda_button_alignment'] ) ? $options['agenda_button_alignment'] : 'center';
-        
-        $alignment_options = [
-            'left' => __( 'Left', 'sc-events' ),
-            'center' => __( 'Center', 'sc-events' ),
-            'right' => __( 'Right', 'sc-events' )
-        ];
-        ?>
-        <fieldset>
-            <legend class="screen-reader-text"><span><?php _e( 'Agenda Button Alignment', 'sc-events' ); ?></span></legend>
-            <?php foreach ( $alignment_options as $alignment_value => $alignment_label ) : ?>
-                <label style="display: block; margin-bottom: 8px;">
-                    <input type="radio" name="sc_events_options[agenda_button_alignment]" value="<?php echo esc_attr( $alignment_value ); ?>" <?php checked( $value, $alignment_value ); ?> />
-                    <?php echo esc_html( $alignment_label ); ?>
-                </label>
-            <?php endforeach; ?>
-        </fieldset>
-        <p class="description">
-            <?php _e( 'Escolha o alinhamento do botão "Ver agenda completa" na página.', 'sc-events' ); ?>
-        </p>
-        <?php
-    }
     
     public function render_field_custom_css( $args ) {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
         ?>
-        <textarea name="sc_events_options[custom_css]" rows="15" style="width: 100%; font-family: monospace;"><?php echo esc_textarea( $value ); ?></textarea>
+        <div class="sc-events-settings-group sc-events-css-group">
+            <h3><?php _e( 'CSS Personalizado', 'sc-events' ); ?></h3>
+            <textarea name="sc_events_options[custom_css]" rows="15" style="width: 100%; font-family: monospace;"><?php echo esc_textarea( $value ); ?></textarea>
+            <?php
+            if ( isset( $args['description_callback'] ) ) {
+                call_user_func( $args['description_callback'] );
+            }
+            ?>
+        </div>
         <?php
-        if ( isset( $args['description_callback'] ) ) {
-            call_user_func( $args['description_callback'] );
-        }
     }
 
     public function sanitize_options( $input ) {
@@ -405,6 +443,7 @@ class Settings {
         $new_input['show_agenda_button'] = isset( $input['show_agenda_button'] ) ? 1 : 0;
         $new_input['agenda_button_style'] = isset( $input['agenda_button_style'] ) && in_array( $input['agenda_button_style'], $allowed_button_styles ) ? $input['agenda_button_style'] : 'default-blue';
         $new_input['agenda_button_classes'] = isset( $input['agenda_button_classes'] ) ? sanitize_text_field( $input['agenda_button_classes'] ) : '';
+        $new_input['agenda_button_text'] = isset( $input['agenda_button_text'] ) ? sanitize_text_field( $input['agenda_button_text'] ) : 'Ver agenda completa';
         $new_input['agenda_button_alignment'] = isset( $input['agenda_button_alignment'] ) && in_array( $input['agenda_button_alignment'], ['left', 'center', 'right'] ) ? $input['agenda_button_alignment'] : 'center';
         $new_input['custom_css'] = isset( $input['custom_css'] ) ? wp_kses( $input['custom_css'], [] ) : '';
         return $new_input;

@@ -147,6 +147,74 @@
   margin-top: 0;
 }
 
+.sc-events-agenda-button-container {
+  display: flex;
+  margin: 2rem 0;
+}
+.sc-events-agenda-button-container.align-left {
+  justify-content: flex-start;
+}
+.sc-events-agenda-button-container.align-center {
+  justify-content: center;
+}
+.sc-events-agenda-button-container.align-right {
+  justify-content: flex-end;
+}
+
+.sc-events-agenda-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.sc-events-agenda-btn[data-style="default-blue"] {
+  background-color: #007cba;
+  color: #fff;
+}
+.sc-events-agenda-btn[data-style="default-blue"]:hover {
+  background-color: #005a8b;
+  color: #fff;
+}
+.sc-events-agenda-btn[data-style="default-bw"] {
+  background-color: #000;
+  color: #fff;
+}
+.sc-events-agenda-btn[data-style="default-bw"]:hover {
+  background-color: #333;
+  color: #fff;
+}
+.sc-events-agenda-btn[data-style="black-yellow"] {
+  background-color: #000;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+}
+.sc-events-agenda-btn[data-style="black-yellow"]:hover {
+  background-color: #ffd700;
+  color: #000;
+}
+.sc-events-agenda-btn[data-style="white-yellow"] {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #ffd700;
+}
+.sc-events-agenda-btn[data-style="white-yellow"]:hover {
+  background-color: #ffd700;
+  color: #000;
+}
+.sc-events-agenda-btn[data-style="theme"] {
+  background: inherit;
+  color: inherit;
+  padding: inherit;
+  border-radius: inherit;
+  font-weight: inherit;
+  border: inherit;
+}
+
 .sc-events-single-container {
   max-width: 960px;
   margin: 0 auto;

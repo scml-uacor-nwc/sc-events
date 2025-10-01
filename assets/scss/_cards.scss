@@ -166,8 +166,19 @@
 
 .sc-events-agenda-button-container {
     display: flex;
-    justify-content: center;
     margin: 2rem 0;
+    
+    &.align-left {
+        justify-content: flex-start;
+    }
+    
+    &.align-center {
+        justify-content: center;
+    }
+    
+    &.align-right {
+        justify-content: flex-end;
+    }
 }
 
 .sc-events-agenda-btn {

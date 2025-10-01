@@ -114,6 +114,14 @@ class Settings {
         );
         
         add_settings_field(
+            'agenda_button_alignment',
+            __( 'Agenda Button Alignment', 'sc-events' ),
+            [ $this, 'render_field_agenda_button_alignment' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
             'custom_css',
             __( 'Custom CSS', 'sc-events' ),
             [ $this, 'render_field_custom_css' ],
@@ -350,6 +358,31 @@ class Settings {
         <?php
     }
     
+    public function render_field_agenda_button_alignment() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['agenda_button_alignment'] ) ? $options['agenda_button_alignment'] : 'center';
+        
+        $alignment_options = [
+            'left' => __( 'Left', 'sc-events' ),
+            'center' => __( 'Center', 'sc-events' ),
+            'right' => __( 'Right', 'sc-events' )
+        ];
+        ?>
+        <fieldset>
+            <legend class="screen-reader-text"><span><?php _e( 'Agenda Button Alignment', 'sc-events' ); ?></span></legend>
+            <?php foreach ( $alignment_options as $alignment_value => $alignment_label ) : ?>
+                <label style="display: block; margin-bottom: 8px;">
+                    <input type="radio" name="sc_events_options[agenda_button_alignment]" value="<?php echo esc_attr( $alignment_value ); ?>" <?php checked( $value, $alignment_value ); ?> />
+                    <?php echo esc_html( $alignment_label ); ?>
+                </label>
+            <?php endforeach; ?>
+        </fieldset>
+        <p class="description">
+            <?php _e( 'Escolha o alinhamento do botão "Ver agenda completa" na página.', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
     public function render_field_custom_css( $args ) {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
@@ -372,6 +405,7 @@ class Settings {
         $new_input['show_agenda_button'] = isset( $input['show_agenda_button'] ) ? 1 : 0;
         $new_input['agenda_button_style'] = isset( $input['agenda_button_style'] ) && in_array( $input['agenda_button_style'], $allowed_button_styles ) ? $input['agenda_button_style'] : 'default-blue';
         $new_input['agenda_button_classes'] = isset( $input['agenda_button_classes'] ) ? sanitize_text_field( $input['agenda_button_classes'] ) : '';
+        $new_input['agenda_button_alignment'] = isset( $input['agenda_button_alignment'] ) && in_array( $input['agenda_button_alignment'], ['left', 'center', 'right'] ) ? $input['agenda_button_alignment'] : 'center';
         $new_input['custom_css'] = isset( $input['custom_css'] ) ? wp_kses( $input['custom_css'], [] ) : '';
         return $new_input;
     }

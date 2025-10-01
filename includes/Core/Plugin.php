@@ -62,9 +62,11 @@ final class Plugin {
      */
     public function add_calendar_button_body_class( $classes ) {
         $options = get_option( 'sc_events_options' );
-        $button_style = isset( $options['calendar_button_style'] ) ? $options['calendar_button_style'] : 'default-blue';
+        $calendar_button_style = isset( $options['calendar_button_style'] ) ? $options['calendar_button_style'] : 'default-blue';
+        $agenda_button_style = isset( $options['agenda_button_style'] ) ? $options['agenda_button_style'] : 'default-blue';
         
-        $classes[] = 'sc-events-btn-' . $button_style;
+        $classes[] = 'sc-events-btn-' . $calendar_button_style;
+        $classes[] = 'sc-events-agenda-btn-' . $agenda_button_style;
         
         return $classes;
     }

@@ -90,6 +90,30 @@ class Settings {
         );
         
         add_settings_field(
+            'show_agenda_button',
+            __( 'Show Agenda Button', 'sc-events' ),
+            [ $this, 'render_field_show_agenda_button' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
+            'agenda_button_style',
+            __( 'Agenda Button Style', 'sc-events' ),
+            [ $this, 'render_field_agenda_button_style' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
+            'agenda_button_classes',
+            __( 'Agenda Button CSS Classes', 'sc-events' ),
+            [ $this, 'render_field_agenda_button_classes' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
             'custom_css',
             __( 'Custom CSS', 'sc-events' ),
             [ $this, 'render_field_custom_css' ],
@@ -274,6 +298,58 @@ class Settings {
         <?php
     }
     
+    public function render_field_show_agenda_button() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['show_agenda_button'] ) ? $options['show_agenda_button'] : 1;
+        ?>
+        <label for="sc_events_show_agenda_button">
+            <input type="checkbox" id="sc_events_show_agenda_button" name="sc_events_options[show_agenda_button]" value="1" <?php checked( $value, 1 ); ?> />
+            <?php _e( 'Mostrar botão "Ver agenda completa" no shortcode [sc_events]', 'sc-events' ); ?>
+        </label>
+        <p class="description">
+            <?php _e( 'Exibe um botão centralizado sob a grelha de eventos que leva à página /agenda.', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
+    public function render_field_agenda_button_style() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['agenda_button_style'] ) ? $options['agenda_button_style'] : 'default-blue';
+        
+        $button_styles = [
+            'default-blue' => __( 'Default Blue', 'sc-events' ),
+            'default-bw' => __( 'Default B&W', 'sc-events' ),
+            'black-yellow' => __( 'Black & Yellow', 'sc-events' ),
+            'white-yellow' => __( 'White & Yellow', 'sc-events' ),
+            'theme' => __( 'Theme Integration - Integra-se com botões do tema', 'sc-events' )
+        ];
+        ?>
+        <fieldset>
+            <legend class="screen-reader-text"><span><?php _e( 'Agenda Button Style', 'sc-events' ); ?></span></legend>
+            <?php foreach ( $button_styles as $style_value => $style_label ) : ?>
+                <label style="display: block; margin-bottom: 8px;">
+                    <input type="radio" name="sc_events_options[agenda_button_style]" value="<?php echo esc_attr( $style_value ); ?>" <?php checked( $value, $style_value ); ?> />
+                    <?php echo esc_html( $style_label ); ?>
+                </label>
+            <?php endforeach; ?>
+        </fieldset>
+        <p class="description">
+            <?php _e( 'Escolha o estilo do botão "Ver agenda completa". "Theme Integration" adapta-se aos botões do seu tema.', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
+    public function render_field_agenda_button_classes() {
+        $options = get_option( 'sc_events_options' );
+        $value   = isset( $options['agenda_button_classes'] ) ? $options['agenda_button_classes'] : '';
+        ?>
+        <input type="text" name="sc_events_options[agenda_button_classes]" value="<?php echo esc_attr( $value ); ?>" style="width: 100%; max-width: 400px;" placeholder="btn btn-primary custom-class" />
+        <p class="description">
+            <?php _e( 'Adicione classes CSS personalizadas para o botão "Ver agenda completa" (separadas por espaços). Exemplo: btn btn-primary custom-style', 'sc-events' ); ?>
+        </p>
+        <?php
+    }
+    
     public function render_field_custom_css( $args ) {
         $options = get_option( 'sc_events_options' );
         $value   = isset( $options['custom_css'] ) ? $options['custom_css'] : '';
@@ -293,6 +369,9 @@ class Settings {
         $new_input['calendar_button_style'] = isset( $input['calendar_button_style'] ) && in_array( $input['calendar_button_style'], $allowed_button_styles ) ? $input['calendar_button_style'] : 'default-blue';
         $new_input['calendar_button_classes'] = isset( $input['calendar_button_classes'] ) ? sanitize_text_field( $input['calendar_button_classes'] ) : '';
         $new_input['calendar_button_show_icon'] = isset( $input['calendar_button_show_icon'] ) ? 1 : 0;
+        $new_input['show_agenda_button'] = isset( $input['show_agenda_button'] ) ? 1 : 0;
+        $new_input['agenda_button_style'] = isset( $input['agenda_button_style'] ) && in_array( $input['agenda_button_style'], $allowed_button_styles ) ? $input['agenda_button_style'] : 'default-blue';
+        $new_input['agenda_button_classes'] = isset( $input['agenda_button_classes'] ) ? sanitize_text_field( $input['agenda_button_classes'] ) : '';
         $new_input['custom_css'] = isset( $input['custom_css'] ) ? wp_kses( $input['custom_css'], [] ) : '';
         return $new_input;
     }

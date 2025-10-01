@@ -161,3 +161,80 @@
         }
     }
 }
+
+// --- AGENDA BUTTON ---
+
+.sc-events-agenda-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.sc-events-agenda-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    
+    // Default Blue Style
+    &[data-style="default-blue"] {
+        background-color: #007cba;
+        color: #fff;
+        
+        &:hover {
+            background-color: #005a8b;
+            color: #fff;
+        }
+    }
+    
+    // Default Black & White Style
+    &[data-style="default-bw"] {
+        background-color: #000;
+        color: #fff;
+        
+        &:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    }
+    
+    // Black & Yellow Style
+    &[data-style="black-yellow"] {
+        background-color: #000;
+        color: #ffd700;
+        border: 2px solid #ffd700;
+        
+        &:hover {
+            background-color: #ffd700;
+            color: #000;
+        }
+    }
+    
+    // White & Yellow Style
+    &[data-style="white-yellow"] {
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #ffd700;
+        
+        &:hover {
+            background-color: #ffd700;
+            color: #000;
+        }
+    }
+    
+    // Theme Integration - inherit theme button styles
+    &[data-style="theme"] {
+        // Reset custom styles to allow theme inheritance
+        background: inherit;
+        color: inherit;
+        padding: inherit;
+        border-radius: inherit;
+        font-weight: inherit;
+        border: inherit;
+    }
+}

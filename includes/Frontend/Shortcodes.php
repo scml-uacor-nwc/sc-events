@@ -134,6 +134,27 @@ class Shortcodes {
                 <?php
             }
             echo '</div>';
+            
+            // Add agenda button if enabled in settings
+            if ( ! empty( $sc_events_options['show_agenda_button'] ) ) {
+                $agenda_button_style = isset( $sc_events_options['agenda_button_style'] ) ? $sc_events_options['agenda_button_style'] : 'default-blue';
+                $agenda_button_classes = isset( $sc_events_options['agenda_button_classes'] ) ? $sc_events_options['agenda_button_classes'] : '';
+                
+                $button_class = 'sc-events-agenda-btn';
+                if ( $agenda_button_style === 'theme' ) {
+                    $button_class .= ' wp-element-button button btn';
+                }
+                if ( ! empty( $agenda_button_classes ) ) {
+                    $button_class .= ' ' . esc_attr( $agenda_button_classes );
+                }
+                ?>
+                <div class="sc-events-agenda-button-container">
+                    <a href="/agenda" class="<?php echo esc_attr( $button_class ); ?>" data-style="<?php echo esc_attr( $agenda_button_style ); ?>">
+                        <?php _e( 'Ver agenda completa', 'sc-events' ); ?>
+                    </a>
+                </div>
+                <?php
+            }
         } else {
             echo '<p>' . __( 'There are no upcoming events scheduled at this time.', 'sc-events' ) . '</p>';
         }

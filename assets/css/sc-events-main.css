@@ -168,9 +168,10 @@
   border-radius: 4px;
   font-weight: 500;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   border: none;
   cursor: pointer;
+  box-sizing: border-box;
 }
 .sc-events-agenda-btn[data-style="default-blue"] {
   background-color: #007cba;

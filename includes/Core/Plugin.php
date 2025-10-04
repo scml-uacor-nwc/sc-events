@@ -24,7 +24,8 @@ final class Plugin {
     }
 
     private function __construct() {
-        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
+        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ], 1 );
+        add_action( 'init', [ $this, 'load_textdomain' ], 1 );
         $this->load_modules();
     }
 
@@ -76,27 +77,33 @@ final class Plugin {
      * Load plugin textdomain for translations.
      */
     public function load_textdomain() {
+        // Prevent multiple loads
+        static $loaded = false;
+        if ( $loaded ) {
+            return;
+        }
+        $loaded = true;
+        
         // Get the user's language preference from plugin settings
         $options = get_option( 'sc_events_options' );
         $plugin_language = isset( $options['plugin_language'] ) ? $options['plugin_language'] : 'pt_PT';
         
-        // Set the locale based on user preference
-        if ( $plugin_language === 'en_US' ) {
-            $locale = 'en_US';
-        } else {
-            $locale = 'pt_PT';
+        // Override locale for this plugin's domain before loading
+        add_filter( 'plugin_locale', function( $locale, $domain ) use ( $plugin_language ) {
+            if ( $domain === 'sc-events' ) {
+                return $plugin_language;
+            }
+            return $locale;
+        }, 10, 2 );
+        
+        // Try loading with specific locale first
+        $mo_file = SC_EVENTS_PATH . 'languages/sc-events-' . $plugin_language . '.mo';
+        if ( file_exists( $mo_file ) ) {
+            load_textdomain( 'sc-events', $mo_file );
         }
         
-        // Load the appropriate language file
+        // Also load via standard method as fallback
         load_plugin_textdomain( 'sc-events', false, dirname( SC_EVENTS_BASENAME ) . '/languages/' );
-        
-        // Force the specific locale for this plugin's strings
-        add_filter( 'plugin_locale', function( $locale_filter, $domain ) use ( $locale ) {
-            if ( $domain === 'sc-events' ) {
-                return $locale;
-            }
-            return $locale_filter;
-        }, 10, 2 );
     }
     
     public static function activate() {

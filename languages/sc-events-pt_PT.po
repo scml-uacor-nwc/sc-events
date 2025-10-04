@@ -103,7 +103,7 @@ msgstr "Contactos"
 
 # Frontend strings
 msgid "There are no upcoming events scheduled at this time."
-msgstr "Não há eventos futuros agendados neste momento."
+msgstr "Não há eventos próximos agendados neste momento."
 
 msgid "AGENDA"
 msgstr "AGENDA"

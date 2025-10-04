@@ -3,7 +3,7 @@
  * Plugin Name:       SC Events
  * Plugin URI:        https://scml.pt
  * Description:       A modular plugin to create and manage events.
- * Version:           2.4.2
+ * Version:           2.4.3
  * Author:            Pedro Matias
  * Author URI:        https://pedromatias.dev/
  * License:           GPL-2.0+

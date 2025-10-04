@@ -13,13 +13,17 @@ $place      = get_post_meta( get_the_ID(), '_event_place', true );
 $registry   = get_post_meta( get_the_ID(), '_event_registry', true );
 $contacts   = get_post_meta( get_the_ID(), '_event_contacts', true );
 
-// Format the time range for the "Data / hora" box
+// Format the time range for the "Data / hora" box using 24-hour format
 $time_range = '';
 if($start_date) {
-    $time_range = date_i18n( get_option('time_format'), strtotime($start_date) );
+    $start_hour = date('H', strtotime($start_date));
+    $start_minute = date('i', strtotime($start_date));
+    $time_range = $start_hour . 'h' . ($start_minute != '00' ? $start_minute . 'm' : '');
 }
 if($end_date && date('H:i', strtotime($start_date)) != date('H:i', strtotime($end_date))) {
-     $time_range .= ' às ' . date_i18n( get_option('time_format'), strtotime($end_date) );
+     $end_hour = date('H', strtotime($end_date));
+     $end_minute = date('i', strtotime($end_date));
+     $time_range .= ' às ' . $end_hour . 'h' . ($end_minute != '00' ? $end_minute . 'm' : '');
 }
 ?>
 

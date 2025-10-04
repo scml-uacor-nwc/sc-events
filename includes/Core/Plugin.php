@@ -24,6 +24,7 @@ final class Plugin {
     }
 
     private function __construct() {
+        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
         $this->load_modules();
     }
 
@@ -69,6 +70,33 @@ final class Plugin {
         $classes[] = 'sc-events-agenda-btn-' . $agenda_button_style;
         
         return $classes;
+    }
+    
+    /**
+     * Load plugin textdomain for translations.
+     */
+    public function load_textdomain() {
+        // Get the user's language preference from plugin settings
+        $options = get_option( 'sc_events_options' );
+        $plugin_language = isset( $options['plugin_language'] ) ? $options['plugin_language'] : 'pt_PT';
+        
+        // Set the locale based on user preference
+        if ( $plugin_language === 'en_US' ) {
+            $locale = 'en_US';
+        } else {
+            $locale = 'pt_PT';
+        }
+        
+        // Load the appropriate language file
+        load_plugin_textdomain( 'sc-events', false, dirname( SC_EVENTS_BASENAME ) . '/languages/' );
+        
+        // Force the specific locale for this plugin's strings
+        add_filter( 'plugin_locale', function( $locale_filter, $domain ) use ( $locale ) {
+            if ( $domain === 'sc-events' ) {
+                return $locale;
+            }
+            return $locale_filter;
+        }, 10, 2 );
     }
     
     public static function activate() {

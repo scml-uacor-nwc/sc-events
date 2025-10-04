@@ -123,6 +123,14 @@ class Settings {
         );
         
         add_settings_field(
+            'plugin_language',
+            __( 'Plugin Language', 'sc-events' ),
+            [ $this, 'render_field_plugin_language' ],
+            'sc_events_settings_section',
+            'sc_events_settings_section'
+        );
+        
+        add_settings_field(
             'calendar_button_style',
             __( 'Calendar Button Style', 'sc-events' ),
             [ $this, 'render_field_calendar_button_style' ],
@@ -276,6 +284,31 @@ class Settings {
                 <input type="checkbox" id="sc_events_disable_archive_hover" name="sc_events_options[disable_archive_hover]" value="1" <?php checked( $value, 1 ); ?> />
                 <?php _e( 'Desactiva o efeito hover em TODOS os cartões de eventos.', 'sc-events' ); ?>
             </label>
+        </div>
+        <?php
+    }
+    
+    public function render_field_plugin_language() {
+        $options = get_option( 'sc_events_options' );
+        $value = isset( $options['plugin_language'] ) ? $options['plugin_language'] : 'pt_PT';
+        
+        $languages = array(
+            'pt_PT' => __( 'Português', 'sc-events' ),
+            'en_US' => __( 'English', 'sc-events' )
+        );
+        ?>
+        <div class="sc-events-settings-group sc-events-general-group">
+            <p><strong><?php _e( 'Idioma do Plugin:', 'sc-events' ); ?></strong></p>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e( 'Plugin Language', 'sc-events' ); ?></span></legend>
+                <?php foreach ( $languages as $key => $label ) : ?>
+                    <label for="sc_events_plugin_language_<?php echo esc_attr( $key ); ?>" style="display: block; margin: 5px 0;">
+                        <input type="radio" id="sc_events_plugin_language_<?php echo esc_attr( $key ); ?>" name="sc_events_options[plugin_language]" value="<?php echo esc_attr( $key ); ?>" <?php checked( $value, $key ); ?> />
+                        <?php echo esc_html( $label ); ?>
+                    </label>
+                <?php endforeach; ?>
+            </fieldset>
+            <p class="description"><?php _e( 'Escolha o idioma das strings do plugin (data, textos, etc.)', 'sc-events' ); ?></p>
         </div>
         <?php
     }
@@ -434,9 +467,11 @@ class Settings {
 
     public function sanitize_options( $input ) {
         $allowed_button_styles = [ 'default-blue', 'default-bw', 'black-yellow', 'white-yellow', 'theme' ];
+        $allowed_languages = [ 'pt_PT', 'en_US' ];
         
         $new_input = [];
         $new_input['disable_archive_hover'] = isset( $input['disable_archive_hover'] ) ? 1 : 0;
+        $new_input['plugin_language'] = isset( $input['plugin_language'] ) && in_array( $input['plugin_language'], $allowed_languages ) ? $input['plugin_language'] : 'pt_PT';
         $new_input['calendar_button_style'] = isset( $input['calendar_button_style'] ) && in_array( $input['calendar_button_style'], $allowed_button_styles ) ? $input['calendar_button_style'] : 'default-blue';
         $new_input['calendar_button_classes'] = isset( $input['calendar_button_classes'] ) ? sanitize_text_field( $input['calendar_button_classes'] ) : '';
         $new_input['calendar_button_show_icon'] = isset( $input['calendar_button_show_icon'] ) ? 1 : 0;

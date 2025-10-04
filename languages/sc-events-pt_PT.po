@@ -1,0 +1,176 @@
+# Portuguese (Portugal) language file for SC Events Plugin
+# Copyright (C) 2024 Pedro Matias
+# This file is distributed under the same license as the SC Events plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: SC Events 2.4.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-04 12:00+0000\n"
+"PO-Revision-Date: 2024-10-04 12:00+0000\n"
+"Last-Translator: Pedro Matias\n"
+"Language-Team: Portuguese\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Admin strings
+msgid "Custom Settings"
+msgstr "Definições Personalizadas"
+
+msgid "General Settings"
+msgstr "Definições Gerais"
+
+msgid "Global Hover Control"
+msgstr "Controlo Global de Hover"
+
+msgid "Plugin Language"
+msgstr "Idioma do Plugin"
+
+msgid "Português"
+msgstr "Português"
+
+msgid "English"
+msgstr "English"
+
+msgid "Idioma do Plugin:"
+msgstr "Idioma do Plugin:"
+
+msgid "Escolha o idioma das strings do plugin (data, textos, etc.)"
+msgstr "Escolha o idioma das strings do plugin (data, textos, etc.)"
+
+msgid "Calendar Button Style"
+msgstr "Estilo do Botão de Calendário"
+
+msgid "Show Agenda Button"
+msgstr "Mostrar Botão da Agenda"
+
+msgid "Custom CSS"
+msgstr "CSS Personalizado"
+
+msgid "Shortcode Instructions"
+msgstr "Instruções do Shortcode"
+
+# Event strings
+msgid "Events"
+msgstr "Eventos"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "All Events"
+msgstr "Todos os Eventos"
+
+msgid "Add New Event"
+msgstr "Adicionar Novo Evento"
+
+msgid "Edit Event"
+msgstr "Editar Evento"
+
+msgid "View Event"
+msgstr "Ver Evento"
+
+msgid "Search Event"
+msgstr "Pesquisar Evento"
+
+msgid "Not found"
+msgstr "Não encontrado"
+
+msgid "Not found in Trash"
+msgstr "Não encontrado no Lixo"
+
+msgid "Event Details"
+msgstr "Detalhes do Evento"
+
+msgid "Start Date and Hour"
+msgstr "Data e Hora de Início"
+
+msgid "End Date and Hour"
+msgstr "Data e Hora de Fim"
+
+msgid "Leave empty if this is a single-day event or the end time is not applicable."
+msgstr "Deixe vazio se for um evento de um único dia ou se a hora de fim não se aplicar."
+
+msgid "Place"
+msgstr "Local"
+
+msgid "Registry (URL)"
+msgstr "Registo (URL)"
+
+msgid "Contacts"
+msgstr "Contactos"
+
+# Frontend strings
+msgid "There are no upcoming events scheduled at this time."
+msgstr "Não há eventos futuros agendados neste momento."
+
+msgid "AGENDA"
+msgstr "AGENDA"
+
+msgid "No events found."
+msgstr "Nenhum evento encontrado."
+
+msgid "PRÓXIMOS"
+msgstr "PRÓXIMOS"
+
+msgid "Não há eventos futuros agendados."
+msgstr "Não há eventos futuros agendados."
+
+msgid "Início"
+msgstr "Início"
+
+msgid "Agenda"
+msgstr "Agenda"
+
+msgid "Data / hora"
+msgstr "Data / hora"
+
+msgid "Local"
+msgstr "Local"
+
+msgid "Registo"
+msgstr "Registo"
+
+msgid "O registo para esta ação deve ser feito através do seguinte link:"
+msgstr "O registo para esta ação deve ser feito através do seguinte link:"
+
+msgid "Contactos"
+msgstr "Contactos"
+
+msgid "Adicionar ao calendário"
+msgstr "Adicionar ao calendário"
+
+msgid "Event not found."
+msgstr "Evento não encontrado."
+
+# Category strings
+msgid "Event Categories"
+msgstr "Categorias de Eventos"
+
+msgid "Search Event Categories"
+msgstr "Pesquisar Categorias de Eventos"
+
+msgid "All Event Categories"
+msgstr "Todas as Categorias de Eventos"
+
+msgid "Parent Event Category"
+msgstr "Categoria de Evento Principal"
+
+msgid "Parent Event Category:"
+msgstr "Categoria de Evento Principal:"
+
+msgid "Edit Event Category"
+msgstr "Editar Categoria de Evento"
+
+msgid "Update Event Category"
+msgstr "Atualizar Categoria de Evento"
+
+msgid "Add New Event Category"
+msgstr "Adicionar Nova Categoria de Evento"
+
+msgid "New Event Category Name"
+msgstr "Nome da Nova Categoria de Evento"
+
+msgid "Categories"
+msgstr "Categorias"

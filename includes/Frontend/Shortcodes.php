@@ -142,9 +142,10 @@ class Shortcodes {
                 $agenda_button_alignment = isset( $sc_events_options['agenda_button_alignment'] ) ? $sc_events_options['agenda_button_alignment'] : 'center';
                 $agenda_button_text = isset( $sc_events_options['agenda_button_text'] ) ? $sc_events_options['agenda_button_text'] : 'Ver agenda completa';
                 
-                $button_class = 'sc-events-agenda-btn';
                 if ( $agenda_button_style === 'theme' ) {
-                    $button_class .= ' wp-element-button button btn';
+                    $button_class = 'sc-events-theme-integration-btn wp-element-button button btn';
+                } else {
+                    $button_class = 'sc-events-agenda-btn';
                 }
                 if ( ! empty( $agenda_button_classes ) ) {
                     $button_class .= ' ' . esc_attr( $agenda_button_classes );

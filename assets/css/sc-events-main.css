@@ -216,6 +216,10 @@
   border: inherit;
 }
 
+.sc-events-theme-integration-btn {
+  /* Empty class - users can add their own styles */
+}
+
 .sc-events-single-container {
   max-width: 960px;
   margin: 0 auto;
